@@ -1,0 +1,7 @@
+To make apache mode_rewrite on windows
+follow the following steps
+1.first open apache server and wiret click on config/httpd.conf open it
+2. find mod_rewrite and remove(#) .
+To make apache mode_rewrite on Ubuntu
+sudo a2enmod rewirete.
+
