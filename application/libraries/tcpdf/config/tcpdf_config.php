@@ -69,7 +69,8 @@ define ('K_PATH_IMAGES',  dirname(__file__).'/../image/');
  * Deafult image logo used be the default Header() method.
  * Please set here your own logo or an empty string to disable it.
  */
-define ('PDF_HEADER_LOGO', 'cart.png');
+define ('PDF_HEADER_LOGO', 'logo.jpg');
+
 
 /**
  * Header logo image width in user units.
@@ -111,12 +112,12 @@ define ('PDF_AUTHOR', 'TCPDF');
  */
 $date=date('Y-m-d:H-i-s');
 //define ('PDF_HEADER_STRING',$date);
-define ('PDF_HEADER_TITLE', 'Biiroo Maallaqa fi Misooma Dinaagdee Oromiyaa \n Nagahee Baasii Qabeenyaa Dhumataa');
+define ('PDF_HEADER_TITLE', 'Oromia Science, Technology and information Communication Authority');
 
 /**
  * Header description string.
  */
-define ('PDF_HEADER_STRING', "DEJENE KASA\n <br/> w.dejenekasa12blogspots.com");
+define ('PDF_HEADER_STRING', "Abbaa Taayitaa Saayinsii , Tekinoolojii fi Quunnamtii Odeeffannoo Oromiyaa  \nOromia IP Managment System");
 
 /**
  * Document unit of measure [pt=point, mm=millimeter, cm=centimeter, in=inch].

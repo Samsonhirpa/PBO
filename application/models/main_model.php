@@ -1,4 +1,3 @@
-
 <?php  
  class Main_model extends CI_Model  
  { 
@@ -34,11 +33,37 @@
                 return false;  
            }  
       }  
+ function is_email_available1($ipid)  
+      {  
+           $this->db->where('ipid', $ipid);  
+           $query = $this->db->get("carboncopy");  
+           if($query->num_rows() > 0)  
+           {  
+                return true;  
+           }  
+           else  
+           {  
+                return false;  
+           }  
+      }  
+       function is_lanip_available1($lanip)  
+      {  
+           $this->db->where('lanip', $lanip);  
+           $query = $this->db->get("carboncopy");  
+           if($query->num_rows() > 0)  
+           {  
+                return true;  
+           }  
+           else  
+           {  
+                return false;  
+           }  
+      }  
 
       function check_carbonid_avalibility($ipid)  
       {  
            $this->db->where('ipid', $ipid);  
-           $query = $this->db->get("carbonCopy");  
+           $query = $this->db->get("carboncopy");  
            if($query->num_rows() > 0)  
            {  
                 return true;  
@@ -51,7 +76,7 @@
        function check_carbonlan_avalibility($lanip)  
       {  
            $this->db->where('lanip', $lanip);  
-           $query = $this->db->get("carbonCopy");  
+           $query = $this->db->get("carboncopy");  
            if($query->num_rows() > 0)  
            {  
                 return true;  

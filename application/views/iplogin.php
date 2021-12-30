@@ -35,10 +35,10 @@
                   <div class="wrap-login100 p-t-85 p-b-20">
                         <form class="login100-form validate-form" method="POST" action="<?php echo base_url('structure/checkuser');?>">
                               <span class="login100-form-title p-b-70">
-                                    Welcome
+                                    Baga Nagaan Dhuftan
                               </span>
                               <span class="login100-form-avatar">
-                                    <img src="<?php echo base_url();?>dist4/images/logo.png" alt="AVATAR">
+                                    <img src="<?php echo base_url();?>dist/img/oro.PNG" alt="AVATAR">
                               </span>
 
                               <div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter username">

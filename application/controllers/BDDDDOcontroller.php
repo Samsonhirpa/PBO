@@ -359,6 +359,22 @@ public function add_training()
                   return false;
             }
       }
+      public function getmudamaa() {
+            $result = $this->b->getmudamaa();
+            if ($result) {
+                  echo json_encode($result);
+            } else {
+                  return false;
+            }
+      }
+       public function getipid() {
+            $result = $this->b->getipid();
+            if ($result) {
+                  echo json_encode($result);
+            } else {
+                  return false;
+            }
+      }
 
       public function getWoreda1() {
             $result = $this->b->getWoreda1();

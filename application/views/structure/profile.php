@@ -13,6 +13,11 @@
 
    <!-- Profile Image --><div class="col-md-6">
     <div class="panel-heading">
+
+ <button type="button"  data-toggle="modal" data-target="#modal-default"><i class="fa fa-save"> Edit Password</i></button>
+
+
+
 <div class="panel-title">
                         <strong>profile information </strong>
                     </div>
@@ -72,14 +77,80 @@
               </ul>
               
             </div>
-              
-</div></div></div>
-             
-            <!-- /.box-body -->
-          
-          <!-- /.box -->
 
-          <!-- About Me Box -->
-       
-          <!-- /.box -->
-       
+
+
+
+             <div class="modal fade" id="modal-default">
+            <div class="modal-dialog">
+                  <div class="modal-content">
+                        <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span></button>
+                              <h4 class="modal-title">Add Request</h4>
+                        </div>
+                        <div class="modal-body">
+
+
+ <form role="form" action="<?php echo base_url('Structure/updateprofile/'.$useraccount->id);?>" method="post">
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Username</label>
+                  <input name="username" class="form-control" id="exampleInputEmail1" value="<?php echo $useraccount->username;?>" placeholder="username"  readonly type="text">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input name="password" class="form-control" id="exampleInputPassword1" value="<?php echo $useraccount->password;?>" type="text">
+                </div>
+               
+ <div class="form-group">
+                  <label for="exampleInputPassword1">Confirm Password</label>
+                  <input name="repassword" class="form-control" id="exampleInputPassword1" value="<?php echo $useraccount->password;?>" type="text">
+                </div>
+               <div class="row">
+                <div class="col col-md-12">
+                  <input type="submit" class="btn btn-primary" value="Update"name="save">
+                </div>
+               </div>
+              </div>
+            </form>
+
+            </div>
+      </div>
+</div>
+            
+</div>
+
+       <script>
+function validatePassword() {
+var currentPassword,newPassword,confirmPassword,output = true;
+
+currentPassword = document.frmChange.currentPassword;
+newPassword = document.frmChange.newPassword;
+confirmPassword = document.frmChange.confirmPassword;
+
+if(!currentPassword.value) {
+currentPassword.focus();
+document.getElementById("currentPassword").innerHTML = "required";
+output = false;
+}
+else if(!newPassword.value) {
+newPassword.focus();
+document.getElementById("newPassword").innerHTML = "required";
+output = false;
+}
+else if(!confirmPassword.value) {
+confirmPassword.focus();
+document.getElementById("confirmPassword").innerHTML = "required";
+output = false;
+}
+if(newPassword.value != confirmPassword.value) {
+newPassword.value="";
+confirmPassword.value="";
+newPassword.focus();
+document.getElementById("confirmPassword").innerHTML = "not same";
+output = false;
+}   
+return output;
+}
+</script>

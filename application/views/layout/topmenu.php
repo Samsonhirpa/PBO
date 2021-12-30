@@ -5,9 +5,9 @@
     <!-- Logo -->
     <a href="<?php echo base_url('BDDDDOcontroller/dashboard');?>" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>S&N-ICT-Solution</b></span>
+      <span class="logo-mini"><b>ATSTO</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg">IP MANAGEMENT</b></span>
+      <span class="logo-lg"> Oromiyaa</b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -17,9 +17,9 @@
       </a>
 
 
-    <div class="col col-xs-8">
+    <div class="col col-xs-6">
   <li class="dropdown btn btn-default" style="list-style:none; margin-top: 20px;margin-right: 300px;margin-left: 135px; padding: 5px;">
-     <a href="" class="dropdown-toggle"data-toggle="dropdown"><img src="<?php echo base_url('img/oro.png');?>">  Eglish     <b class="caret"></b></a>
+     <a href="" class="dropdown-toggle"data-toggle="dropdown"><img src="<?php echo base_url('img/oro.png');?>">  Afaan Oromo     <b class="caret"></b></a>
       <ul class="dropdown-menu">
         <li class="acitve"><a href="<?php echo base_url('Language/english')?>"><img src="<?php echo base_url('img/english.png');?>">  Eglish </a></li>
         <li><a href="<?php echo base_url('Language/oromo')?>"><img src="<?php echo base_url('img/oro.png');?>"> Afaan Oromo</a></li>
@@ -30,6 +30,9 @@
 
 
       <div class="navbar-custom-menu">
+
+  <!-- <span class="logo-lg"> Siystema Odeeffannoo Hoggantoota Oromiyaa</b></span> -->
+        <!--  -->
         <ul class="nav navbar-nav">
           <!-- Messages: style can be found in dropdown.less-->
           
@@ -47,7 +50,7 @@
                 <img src="<?php echo base_url();?>dist/img/avatar5.png" class="img-circle" alt="User Image">
 
                 <p>
-                   <?php echo $this->session->userdata('username');?> - Web Developer
+                   <?php echo $this->session->userdata('username');?> - Data encoder
                   <small>you are . <?php echo $this->session->userdata('level');?></small>
                 </p>
               </li>

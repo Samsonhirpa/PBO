@@ -84,7 +84,7 @@
                                                       </div>
                                                       <div class="form-group">
                                                             <label for="exampleInputPassword1">Role</label>
-                                                            <select name="role"class="form-control" id="exampleInputPassword1" placeholder="Role" type="text" required>
+                                                            <select name="role"class="form-control" id="exampleInputPassword1" placeholder="Role" type="text" required onchange = "java_script_:level(this.options[this.selectedIndex].value)">
                                                                   <?php foreach ($this->str->getRole() as $row) { ?>
                                                                         <option value="<?php echo $row->role_id; ?>"><?php echo $row->role_name; ?></option>
                                                                   <?php } ?>
@@ -94,7 +94,10 @@
                                                       <div class="form-group">
                                                             <label for="exampleInputPassword1">Email</label>
                                                             <input name="email" class="form-control" id="exampleInputPassword1" placeholder="-- Email --" type="email" required>
-                                                      </div>                                                        <select class="form-control" name="region" id="exampleInputPassword1" required>
+                                                      </div>                                                     
+
+                                                         <select class="form-control" name="region" id="exampleInputPassword1" required>
+                                                            
                                                             <?php
                                                             foreach ($this->b->getregion() as $row) {
                                                                   ?>
@@ -102,9 +105,10 @@
                                                                   <option value="<?php echo $row->r_id ?>"><?php echo $row->r_name; ?></option>
                                                             <?php } ?>
                                                       </select>
+                                                      <div id="zoneid" style="display: none;">
                                                       <label for="exampleInputPassword1"> Zone</label>
-                                                      <select  class="form-control" name="zone" id="zone" required>
-
+                                                      <select  class="form-control" name="zone" id="zone" >
+                                                             <option value="">-- Select  --</option>
                                                             <?php
                                                             foreach ($this->b->getzone() as $row) {
                                                                   ?>
@@ -112,10 +116,13 @@
                                                                   <option value="<?php echo $row->zid ?>"><?php echo $row->zname; ?></option>
                                                             <?php } ?>
                                                       </select>
+                                                </div>
+                                                <div id="woredaid" style="display: none;">
                                                       <label for="exampleInputPassword1">Woreda</label>
-                                                      <select class="form-control"name="woreda" id="woreda" required>
-
+                                                      <select class="form-control"name="woreda" id="woreda" >
+ <option value="">-- Select  --</option>
                                                       </select>
+                                                      </div>
                                                 </div>
                                           </div>
                                     </div>
@@ -168,4 +175,34 @@
                   })
             })
       })
+</script>
+<script>
+       function level(aval) {
+        if (aval == "3") {
+            zoneid.style.display = 'block';
+            woredaid.style.display = 'block';      
+           
+            $('#zoneid').attr('required', 'required');
+            $('#zoneid').attr('required', 'required');
+          
+        } else
+            if (aval == "4") {
+                woredaid.style.display = 'none';
+                zoneid.style.display = 'block';
+               
+                $('#zoneid').attr('required', 'required');
+                $('#woredaid').attr('required', false);
+                $('#woreda').val(null);
+           }
+            else {
+                woredaid.style.display = 'none';
+                zoneid.style.display = 'none';
+                $('#zoneid').attr('required', false);
+                $('#woredaid').attr('required', false);
+                $('#zone').val(null); 
+                $('#woreda').val(null);
+               
+            }
+
+    }
 </script>

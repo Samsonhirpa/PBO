@@ -1,3 +1,4 @@
+
 <?php
 
 /*
@@ -28,6 +29,557 @@ class Structure_model extends CI_Model {
             return false;    
         }
     }
+
+public function editcabine($id)
+  {
+    $this->db->where('cab_id',$id);
+     $this->db->join('woreda', 'woreda.woreda_id = cabine.woreda_id', 'left');
+            $this->db->join('zone', 'zone.zid = cabine.zon_id', 'left');
+            $this->db->join('gender', 'gender.gender_id = cabine.sala_id', 'left');
+            $this->db->join('haalamaati', 'haalamaati.id = cabine.haalamaati', 'left');
+
+    $query=$this->db->get('cabine');
+    if($query)
+    {
+      return $query->row();
+    }
+    else
+    {
+      return false;
+    }
+  } 
+public function editcabine2($id)
+  {
+    $this->db->where('c_id',$id);
+
+            $this->db->join('cabine', 'cabine.cab_id = cabine2.maqa_id');
+            $this->db->join('woreda', 'woreda.woreda_id = cabine2.woreda', 'left');
+            $this->db->join('zone', 'zone.zid = cabine2.zone_id', 'left');
+            // $this->db->join('haalamaati', 'haalamaati.id = cabine2.haalamaati', 'left');
+            $this->db->join('gender', 'gender.gender_id = cabine.sala_id', 'left');
+            $this->db->join('university', 'university.u_id = cabine2.university_id', 'left');
+            $this->db->join('years', 'years.id = cabine2.muxannoo', 'left');
+            
+ $this->db->join('sektera', 'sektera.s_id = cabine2.sector', 'left');
+     $this->db->join('title', 'title.t_id = cabine2.mudama_amma', 'left');
+     $this->db->join('sadarka', 'sadarka.sd_id = cabine2.sadarkaB', 'left');
+    $query=$this->db->get('cabine2');
+    if($query)
+    {
+      return $query->row();
+    }
+    else
+    {
+      return false;
+    }
+  } 
+
+public function deletecabineprofile($id) {
+            $this->db->where('cab_id', $id);
+            $query = $this->db->delete('cabine');
+            if ($query) {
+                  return true;
+            } else {
+                  return FALSE;
+            }
+      }public function deletecomment($id) {
+            $this->db->where('id', $id);
+            $query = $this->db->delete('ipcomment');
+            if ($query) {
+                  return true;
+            } else {
+                  return FALSE;
+            }
+      }
+public function deletecabineprofile2($id) {
+            $this->db->where('c_id', $id);
+            $query = $this->db->delete('cabine2');
+            if ($query) {
+                  return true;
+            } else {
+                  return FALSE;
+            }
+      }
+
+ public function getcab() {
+            $this->db->select('*');
+            $this->db->from('cabine2');
+            $this->db->join('cabine', 'cabine.cab_id = cabine2.maqa_id');
+            $this->db->join('woreda', 'woreda.woreda_id = cabine2.woreda', 'left');
+            $this->db->join('zone', 'zone.zid = cabine2.zone_id', 'left');
+            $this->db->join('gender', 'gender.gender_id = cabine.sala_id', 'left');
+            $this->db->join('years', 'years.id = cabine2.muxannoo', 'left');
+            $this->db->join('university', 'university.u_id = cabine2.university_id', 'left');
+           $this->db->join('sektera', 'sektera.s_id = cabine2.sector', 'left');
+     $this->db->join('title', 'title.t_id = cabine2.mudama_amma', 'left');
+     $this->db->join('sadarka', 'sadarka.sd_id = cabine2.sadarkaB', 'left');
+            $query = $this->db->get();
+            if ($query) {
+                  return $query->result();
+            } else {
+                  return false;
+            }
+      }
+
+public function getuniversity(){
+
+    $this->db->select('*');
+    $this->db->from('university');
+    $query = $this->db->get();
+    if($query)
+    {
+      return $query->result();
+    }
+  }
+ public function getwored(){
+
+    $this->db->select('*');
+    $this->db->from('woreda');
+    $query = $this->db->get();
+    if($query)
+    {
+      return $query->result();
+    }
+  }
+  public function getlevel(){
+
+    $this->db->select('*');
+    $this->db->from('level');
+    $query = $this->db->get();
+    if($query)
+    {
+      return $query->result();
+    }
+  }public function getsector(){
+
+    $this->db->select('*');
+    $this->db->from('sektera');
+    $query = $this->db->get();
+    if($query)
+    {
+      return $query->result();
+    }
+  }
+ public function getsadarka(){
+
+    $this->db->select('*');
+    $this->db->from('sadarka');
+    $query = $this->db->get();
+    if($query)
+    {
+      return $query->result();
+    }
+  }
+ public function getmudama(){
+
+    $this->db->select('*');
+    $this->db->from('title');
+    $query = $this->db->get();
+    if($query)
+    {
+      return $query->result();
+    }
+  }
+  public function getcabineprofile(){
+
+    $this->db->select('*');
+    $this->db->from('cabine');
+    $this->db->join('woreda', 'woreda.woreda_id = cabine.woreda_id', 'left');
+    $this->db->join('zone', 'zone.zid = cabine.zon_id', 'left');
+    $this->db->join('gender', 'gender.gender_id = cabine.sala_id', 'left');
+          
+    $query = $this->db->get();
+    if($query)
+    {
+      return $query->result();
+    }
+  } 
+
+
+ public function getempcabineprofile($user)
+      {
+            $this->db->select('*');
+            $this->db->order_by('cab_id' , 'DESC');
+            $this->db->from('cabine');
+    $this->db->join('woreda', 'woreda.woreda_id = cabine.woreda_id', 'left');
+    $this->db->join('zone', 'zone.zid = cabine.zon_id', 'left');
+    $this->db->join('gender', 'gender.gender_id = cabine.sala_id', 'left');
+ 
+            $this->db->where('created_by1',$user);
+            $query= $this->db->get();
+            if($query)
+            {
+                  return $query->result();
+            }
+            else{
+                  return FALSE;
+            }
+            
+            
+      }
+
+public function gethogganaa_aanaa($ana)
+      {
+            $this->db->select('*');
+             $this->db->where('requst_status',2);
+              $this->db->order_by('c_id' , 'DESC');
+             $this->db->from('cabine2');
+    $this->db->join('cabine', 'cabine.cab_id = cabine2.maqa_id');
+    $this->db->join('woreda', 'woreda.woreda_id = cabine2.woreda', 'left');
+    $this->db->join('zone', 'zone.zid = cabine2.zone_id', 'left');
+    $this->db->join('university', 'university.u_id = cabine2.university_id', 'left');
+     $this->db->join('years', 'years.id = cabine2.muxannoo', 'left');
+   $this->db->join('gender', 'gender.gender_id = cabine.sala_id', 'left');
+  $this->db->join('sektera', 'sektera.s_id = cabine2.sector', 'left');
+     $this->db->join('title', 'title.t_id = cabine2.mudama_amma', 'left');
+     $this->db->join('sadarka', 'sadarka.sd_id = cabine2.sadarkaB', 'left');
+            $this->db->where('woreda',$ana);
+            $query= $this->db->get();
+            if($query)
+            {
+                  return $query->result();
+            }
+            else{
+                  return FALSE;
+            }
+            
+            
+      }
+    public function gethogganaa_godina($god)
+      {
+            $this->db->select('*');
+             $this->db->where('requst_status',2);
+              $this->db->order_by('c_id' , 'DESC');
+             $this->db->from('cabine2');
+    $this->db->join('cabine', 'cabine.cab_id = cabine2.maqa_id');
+    $this->db->join('woreda', 'woreda.woreda_id = cabine2.woreda', 'left');
+    $this->db->join('zone', 'zone.zid = cabine2.zone_id', 'left');
+    $this->db->join('university', 'university.u_id = cabine2.university_id', 'left');
+     $this->db->join('years', 'years.id = cabine2.muxannoo', 'left');
+   $this->db->join('gender', 'gender.gender_id = cabine.sala_id', 'left');
+  $this->db->join('sektera', 'sektera.s_id = cabine2.sector', 'left');
+     $this->db->join('title', 'title.t_id = cabine2.mudama_amma', 'left');
+     $this->db->join('sadarka', 'sadarka.sd_id = cabine2.sadarkaB', 'left');
+            $this->db->where('zone_id',$god);
+            $this->db->where('woreda_name', "Zone Admin");
+            // $this->db->where('zname !=', 'Zone Admin');
+            $query= $this->db->get();
+            if($query)
+            {
+                  return $query->result();
+            }
+            else{
+                  return FALSE;
+            }
+            
+            
+      }
+    public function getzonecabineprofile2($zon)
+      {
+            $this->db->select('*');
+             // $this->db->where('requst_status',2);
+              $this->db->order_by('c_id' , 'DESC');
+             $this->db->from('cabine2');
+    $this->db->join('cabine', 'cabine.cab_id = cabine2.maqa_id');
+    $this->db->join('woreda', 'woreda.woreda_id = cabine2.woreda', 'left');
+    $this->db->join('zone', 'zone.zid = cabine2.zone_id', 'left');
+    $this->db->join('university', 'university.u_id = cabine2.university_id', 'left');
+     $this->db->join('years', 'years.id = cabine2.muxannoo', 'left');
+   $this->db->join('gender', 'gender.gender_id = cabine.sala_id', 'left');
+  $this->db->join('sektera', 'sektera.s_id = cabine2.sector', 'left');
+     $this->db->join('title', 'title.t_id = cabine2.mudama_amma', 'left');
+     $this->db->join('sadarka', 'sadarka.sd_id = cabine2.sadarkaB', 'left');
+            $this->db->where('zone_id',$zon);
+            $this->db->where('woreda_name !=',"Zone Admin");
+            $query= $this->db->get();
+            if($query)
+            {
+                  return $query->result();
+            }
+            else{
+                  return FALSE;
+            }
+            
+            
+      }
+       public function getregioncabineprofile2($zon)
+      {
+            $this->db->select('*');
+             // $this->db->where('requst_status',2);
+              $this->db->order_by('c_id' , 'DESC');
+             $this->db->from('cabine2');
+    $this->db->join('cabine', 'cabine.cab_id = cabine2.maqa_id');
+    $this->db->join('woreda', 'woreda.woreda_id = cabine2.woreda', 'left');
+    $this->db->join('zone', 'zone.zid = cabine2.zone_id', 'left');
+    $this->db->join('university', 'university.u_id = cabine2.university_id', 'left');
+     $this->db->join('years', 'years.id = cabine2.muxannoo', 'left');
+   $this->db->join('gender', 'gender.gender_id = cabine.sala_id', 'left');
+  $this->db->join('sektera', 'sektera.s_id = cabine2.sector', 'left');
+     $this->db->join('title', 'title.t_id = cabine2.mudama_amma', 'left');
+     $this->db->join('sadarka', 'sadarka.sd_id = cabine2.sadarkaB', 'left');
+            // $this->db->where('zone_id',$zon);
+            $this->db->where('woreda_name',"Zone Admin");
+            $query= $this->db->get();
+            if($query)
+            {
+                  return $query->result();
+            }
+            else{
+                  return FALSE;
+            }
+            
+            
+      }
+      public function getempcabineprofile2($user)
+      {
+            $this->db->select('*');
+            $this->db->order_by('c_id' , 'DESC');
+             $this->db->from('cabine2');
+    $this->db->join('cabine', 'cabine.cab_id = cabine2.maqa_id');
+    $this->db->join('woreda', 'woreda.woreda_id = cabine2.woreda', 'left');
+    $this->db->join('zone', 'zone.zid = cabine2.zone_id', 'left');
+    $this->db->join('university', 'university.u_id = cabine2.university_id', 'left');
+     $this->db->join('years', 'years.id = cabine2.muxannoo', 'left');
+     $this->db->join('sektera', 'sektera.s_id = cabine2.sector', 'left');
+     $this->db->join('title', 'title.t_id = cabine2.mudama_amma', 'left');
+     $this->db->join('sadarka', 'sadarka.sd_id = cabine2.sadarkaB', 'left');
+ 
+            $this->db->where('created_by',$user);
+            $query= $this->db->get();
+            if($query)
+            {
+                  return $query->result();
+            }
+            else{
+                  return FALSE;
+            }
+            
+            
+      }
+
+  public function getcabineprofile2(){
+
+    $this->db->select('*');
+    $this->db->from('cabine2');
+    $this->db->join('cabine', 'cabine.cab_id = cabine2.maqa_id');
+    $this->db->join('woreda', 'woreda.woreda_id = cabine2.woreda', 'left');
+    $this->db->join('zone', 'zone.zid = cabine2.zone_id', 'left');
+    $this->db->join('university', 'university.u_id = cabine2.university_id', 'left');
+     $this->db->join('years', 'years.id = cabine2.muxannoo', 'left');
+ $this->db->join('sektera', 'sektera.s_id = cabine2.sector', 'left');
+     $this->db->join('title', 'title.t_id = cabine2.mudama_amma', 'left');
+     $this->db->join('sadarka', 'sadarka.sd_id = cabine2.sadarkaB', 'left');
+          
+    $query = $this->db->get();
+    if($query)
+    {
+      return $query->result();
+    }
+  }
+
+  public function profileinfo($id){
+
+    $this->db->where('c_id',$id);
+     $this->db->join('cabine', 'cabine.cab_id = cabine2.maqa_id');
+    $this->db->join('woreda', 'woreda.woreda_id = cabine2.woreda', 'left');
+    $this->db->join('zone', 'zone.zid = cabine2.zone_id', 'left');
+    $this->db->join('gender', 'gender.gender_id = cabine.sala_id', 'left');
+    $this->db->join('haalamaati', 'haalamaati.id = cabine.haalamaati', 'left');
+    $this->db->join('years', 'years.id = cabine2.muxannoo', 'left');
+    $this->db->join('university', 'university.u_id = cabine2.university_id', 'left');
+     $this->db->join('sektera', 'sektera.s_id = cabine2.sector', 'left');
+     $this->db->join('title', 'title.t_id = cabine2.mudama_amma', 'left');
+     $this->db->join('sadarka', 'sadarka.sd_id = cabine2.sadarkaB', 'left');
+    // $this->db->join('years', 'years.id = cabin2.muxannoo', 'left');
+
+      $query=$this->db->get('cabine2');
+      if($query)
+      {
+        return $query->row();
+      }
+      else
+      {
+        return false;
+      }
+
+  }
+  public function getmaqa(){
+
+    $this->db->select('*');
+    $this->db->order_by('cab_id' , 'DESC');
+    $this->db->from('cabine');
+    $query = $this->db->get();
+    if($query)
+    {
+      return $query->result();
+    }
+  }
+ public function getmuxano(){
+
+    $this->db->select('*');
+    // $this->db->order_by('id' , 'DESC');
+    $this->db->from('years');
+    $query = $this->db->get();
+    if($query)
+    {
+      return $query->result();
+    }
+  }
+
+ 
+  public function gets_barnoota(){
+
+    $this->db->select('*');
+    $this->db->from('education');
+    $query = $this->db->get();
+    if($query)
+    {
+      return $query->result();
+    }
+  }
+  public function gethaalamaati(){
+
+    $this->db->select('*');
+    $this->db->from('haalamaati');
+    $query = $this->db->get();
+    if($query)
+    {
+      return $query->result();
+    }
+  }
+
+
+
+
+public function Delete_request($id) {
+            $this->db->where('id', $id);
+            $query = $this->db->delete('user_request');
+            if ($query) {
+                  return true;
+            } else {
+                  return FALSE;
+            }
+      }
+function downloadcc($params = array()){
+        $this->db->select('*');
+        $this->db->from('carboncopy');
+        // $this->db->where('status','0');
+        $this->db->order_by('id','desc');
+        if(array_key_exists('id',$params) && !empty($params['id'])){
+            $this->db->where('id',$params['id']);
+            //get records
+            $query = $this->db->get();
+            $result = ($query->num_rows() > 0)?$query->row_array():FALSE;
+        }else{
+            //set start and limit
+            if(array_key_exists("start",$params) && array_key_exists("limit",$params)){
+                $this->db->limit($params['limit'],$params['start']);
+            }elseif(!array_key_exists("start",$params) && array_key_exists("limit",$params)){
+                $this->db->limit($params['limit']);
+            }
+            //get records
+            $query = $this->db->get();
+            $result = ($query->num_rows() > 0)?$query->result_array():FALSE;
+        }
+        //return fetched data
+        return $result;
+    }
+
+ public function Deletetl($id) {
+            $this->db->where('id', $id);
+            $query = $this->db->delete('terminate_letter');
+            if ($query) {
+                  return true;
+            } else {
+                  return false;
+            }
+      }
+
+function downloadtl($params = array()){
+        $this->db->select('*');
+        $this->db->from('terminate_letter');
+        // $this->db->where('status','0');
+        $this->db->order_by('id','desc');
+        if(array_key_exists('id',$params) && !empty($params['id'])){
+            $this->db->where('id',$params['id']);
+            //get records
+            $query = $this->db->get();
+            $result = ($query->num_rows() > 0)?$query->row_array():FALSE;
+        }else{
+            //set start and limit
+            if(array_key_exists("start",$params) && array_key_exists("limit",$params)){
+                $this->db->limit($params['limit'],$params['start']);
+            }elseif(!array_key_exists("start",$params) && array_key_exists("limit",$params)){
+                $this->db->limit($params['limit']);
+            }
+            //get records
+            $query = $this->db->get();
+            $result = ($query->num_rows() > 0)?$query->result_array():FALSE;
+        }
+        //return fetched data
+        return $result;
+    }
+
+function downloadus($params = array()){
+        $this->db->select('*');
+        $this->db->from('user_request');
+        // $this->db->where('status','0');
+        $this->db->order_by('id','desc');
+        if(array_key_exists('id',$params) && !empty($params['id'])){
+            $this->db->where('id',$params['id']);
+            //get records
+            $query = $this->db->get();
+            $result = ($query->num_rows() > 0)?$query->row_array():FALSE;
+        }else{
+            //set start and limit
+            if(array_key_exists("start",$params) && array_key_exists("limit",$params)){
+                $this->db->limit($params['limit'],$params['start']);
+            }elseif(!array_key_exists("start",$params) && array_key_exists("limit",$params)){
+                $this->db->limit($params['limit']);
+            }
+            //get records
+            $query = $this->db->get();
+            $result = ($query->num_rows() > 0)?$query->result_array():FALSE;
+        }
+        //return fetched data
+        return $result;
+    }
+
+
+
+
+public function updateprofile($username)
+      {
+            $data=array(
+
+            'username'=>$this->input->post('username'),
+            'password'=>$this->input->post('password'),
+           
+            
+            
+                  );
+            $this->db->where('username',$this->session->userdata('username'));
+      $query=$this->db->update('useraccount',$data);
+      if($query)
+      {
+            return true;
+      }
+      else
+      {
+            return false;
+      }
+            }
+
+
+
+
+
+
+
+
+
+
+
 
     function login($user,$pass){
 
@@ -74,20 +626,9 @@ public function showtletter($id)
       {
         return false;
       }
-  }public function showletter($id)
-  {
-    $this->db->where('id',$id);
-    
-      $query=$this->db->get('osticaletters');
-      if($query)
-      {
-        return $query->row();
-      }
-      else
-      {
-        return false;
-      }
   }
+ 
+  
       public function getZone() {
             $this->db->select('*');
             $this->db->from('zone');
@@ -165,6 +706,19 @@ public function showtletter($id)
             }
       }
 
+public function Edit_requestcomment($id) {
+            $data = array(
+                'directorcom' => $this->input->post('directorcom'),
+                
+            );
+            $this->db->where('id', $id);
+            $query = $this->db->update('user_request', $data);
+            if ($query) {
+                  return TRUE;
+            } else {
+                  return false;
+            }
+      }
       public function getWoreda() {
             $this->db->select('*');
             $this->db->from('woreda');
@@ -853,12 +1407,54 @@ public function showtletter($id)
             
             
       }
+      // public function getuserrequest3($user)
+      // {
+      //        $this->db->select('*');
+      //       $this->db->order_by('id' , 'DESC');
+      //       $this->db->from('user_request');
+      //       $this->db->join('region','region.r_id = user_request.region_id','left');
+      //       $this->db->join('zone','zone.zid = user_request.zone_id','left');
+      //       $this->db->join('woreda','woreda.woreda_id = user_request.woreda','left');
+      //       $query= $this->db->get();
+      //       if($query)
+      //       {
+      //             return $query->result();
+      //       }
+      //       else{
+      //             return FALSE;
+      //       }
+            
+            
+      // }
 
       public function getuserrequest1()
       {
             $this->db->select('*');
             $this->db->order_by('id' , 'DESC');
             $this->db->from('user_request');
+            $this->db->where('requst_status3',2);
+            $this->db->join('region','region.r_id = user_request.region_id','left');
+            $this->db->join('zone','zone.zid = user_request.zone_id','left');
+            $this->db->join('woreda','woreda.woreda_id = user_request.woreda','left');
+            $query= $this->db->get();
+            if($query)
+            {
+                  return $query->result();
+            }
+            else{
+                  return FALSE;
+            }
+            
+            
+      }
+       public function getuserrequest3()
+      {
+            $this->db->select('*');
+            $this->db->order_by('id' , 'DESC');
+             $zone = $this->session->userdata('zone');
+             $this->db->where('zone_id', $zone);
+            $this->db->from('user_request');
+          
             $this->db->join('region','region.r_id = user_request.region_id','left');
             $this->db->join('zone','zone.zid = user_request.zone_id','left');
             $this->db->join('woreda','woreda.woreda_id = user_request.woreda','left');
@@ -898,7 +1494,7 @@ public function showtletter($id)
                 'operator' => $LoggedUser,
                 'created_by' => $username,
             );
-            $query = $this->db->insert('carbonCopy', $data);
+            $query = $this->db->insert('carboncopy', $data);
             if ($query) {
                   return TRUE;
             } else {
@@ -924,7 +1520,7 @@ public function showtletter($id)
 //                
             );
             $this->db->where('id', $id);
-            $query = $this->db->update('carbonCopy', $data);
+            $query = $this->db->update('carboncopy', $data);
             if ($query) {
                   return true;
             } else {
@@ -935,7 +1531,7 @@ public function showtletter($id)
       public function Delete_carboncopy($id)
       {
             $this->db->where('id',$id);
-            $query=$this->db->delete('carbonCopy');
+            $query=$this->db->delete('carboncopy');
             if($query)
             {
                   return TRUE;
@@ -949,10 +1545,10 @@ public function showtletter($id)
       {
             $this->db->select('*');
             $this->db->order_by('id' , 'DESC');
-            $this->db->from('carbonCopy');
-            $this->db->join('region','region.r_id = carbonCopy.region_id','left');
-            $this->db->join('zone','zone.zid = carbonCopy.zone_id','left');
-            $this->db->join('woreda','woreda.woreda_id = carbonCopy.woreda','left');
+            $this->db->from('carboncopy');
+            $this->db->join('region','region.r_id = carboncopy.region_id','left');
+            $this->db->join('zone','zone.zid = carboncopy.zone_id','left');
+            $this->db->join('woreda','woreda.woreda_id = carboncopy.woreda','left');
             // $this->db->join('htp_type','htp_type.htp_id = htp.htptype_id','left');
             // $this->db->join('age','age.ag_id = htp.age_id','left');
             // $this->db->join('gender','gender.gender_id = htp.sex','left');
@@ -971,10 +1567,10 @@ public function showtletter($id)
       {
             $this->db->select('*');
             $this->db->order_by('id' , 'DESC');
-            $this->db->from('carbonCopy');
-            $this->db->join('region','region.r_id = carbonCopy.region_id','left');
-            $this->db->join('zone','zone.zid = carbonCopy.zone_id','left');
-            $this->db->join('woreda','woreda.woreda_id = carbonCopy.woreda','left');
+            $this->db->from('carboncopy');
+            $this->db->join('region','region.r_id = carboncopy.region_id','left');
+            $this->db->join('zone','zone.zid = carboncopy.zone_id','left');
+            $this->db->join('woreda','woreda.woreda_id = carboncopy.woreda','left');
             $query= $this->db->get();
             if($query)
             {
@@ -1002,7 +1598,7 @@ public function postcarbon($post)
       
     );
     $this->db->where('id',$post);
-    $query=$this->db->update('carbonCopy',$data);
+    $query=$this->db->update('carboncopy',$data);
     if($query)
     {
       return true;
@@ -1023,8 +1619,8 @@ public function postcarbon($post)
       'requst_status'=>2,
       
     );
-    $this->db->where('id',$post);
-    $query=$this->db->update('user_request',$data);
+    $this->db->where('c_id',$post);
+    $query=$this->db->update('cabine2',$data);
     if($query)
     {
       return true;
@@ -1044,6 +1640,28 @@ public function requst_status1($post)
       'requst_status1'=>0,
       'requst_status1'=>1,
       'requst_status1'=>2,
+      
+    );
+    $this->db->where('id',$post);
+    $query=$this->db->update('user_request',$data);
+    if($query)
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+
+  }
+  public function requst_status3($post)
+  {
+    $data=array(
+
+      
+      'requst_status3'=>0,
+      'requst_status3'=>1,
+      'requst_status3'=>2,
       
     );
     $this->db->where('id',$post);
@@ -1136,10 +1754,10 @@ public function terminate_status($post)
   
             $this->db->where('post_status',1);
             $this->db->order_by('id' , 'DESC');
-            $this->db->from('carbonCopy');
-            $this->db->join('region','region.r_id = carbonCopy.region_id','left');
-            $this->db->join('zone','zone.zid = carbonCopy.zone_id','left');
-            $this->db->join('woreda','woreda.woreda_id = carbonCopy.woreda','left');
+            $this->db->from('carboncopy');
+            $this->db->join('region','region.r_id = carboncopy.region_id','left');
+            $this->db->join('zone','zone.zid = carboncopy.zone_id','left');
+            $this->db->join('woreda','woreda.woreda_id = carboncopy.woreda','left');
            $qeury=$this->db->get();
 
     if($qeury)
@@ -1241,6 +1859,43 @@ public function terminate_status($post)
             $this->db->join('region','region.r_id = terminate_letter.region_id','left');
             $this->db->join('zone','zone.zid = terminate_letter.zone_id','left');
             $this->db->join('woreda','woreda.woreda_id = terminate_letter.woreda','left');
+            $query= $this->db->get();
+            if($query)
+            {
+                  return $query->result();
+            }
+            else{
+                  return FALSE;
+            }
+            
+            
+      }
+
+      public function getfreelanip()
+      {
+            $this->db->select('*');
+            $this->db->order_by('id' , 'DESC');
+            $this->db->from('freeip');
+            
+           $this->db->where('free_status',0);
+            $query= $this->db->get();
+            if($query)
+            {
+                  return $query->result();
+            }
+            else{
+                  return FALSE;
+            }
+            
+            
+      }
+ public function getfreeipreport()
+      {
+            $this->db->select('*');
+            $this->db->order_by('id' , 'DESC');
+            $this->db->from('freeip');
+            
+           $this->db->where('free_status',0);
             $query= $this->db->get();
             if($query)
             {
@@ -1361,6 +2016,18 @@ public function terminate_status($post)
                   return FALSE;
             }
       }
+      public function getIpinfo(){
+            $this->db->select('*');
+            $this->db->from('carboncopy');
+            $query = $this->db->get();
+            if($query)
+            {
+                  return $query->row();
+            }
+            else{
+                  return false;
+            }
+      }
 
 
 public function free_status($post)
@@ -1417,6 +2084,17 @@ public function free_status($post)
             else{
                   return FALSE;
             }
+      }public function Delete_freeip1($ipid)
+      {
+            $this->db->where('ipid',$ipid);
+            $query=$this->db->delete('freeip');
+            if($query)
+            {
+                  return TRUE;
+            }
+            else{
+                  return FALSE;
+            }
       }
 
       public function getfreeip()
@@ -1424,6 +2102,8 @@ public function free_status($post)
             $this->db->select('*');
             $this->db->order_by('id' , 'DESC');
             $this->db->from('freeip');
+           $this->db->where('free_status',0);
+            
             $this->db->join('region','region.r_id = freeip.region_id','left');
             $this->db->join('zone','zone.zid = freeip.zone_id','left');
             $this->db->join('woreda','woreda.woreda_id = freeip.woreda','left');
@@ -1439,14 +2119,33 @@ public function free_status($post)
             
       }
 
+public function showletter($id)
+  {
+    $this->db->where('osticaletters.id',$id);
+      $this->db->from('osticaletters');
+    $this->db->join('freeip','freeip.id = osticaletters.lanip');
+    $query=$this->db->get();
+    
+    if($query)
+    {
+      return $query->row();
+    }
+    else
+    {
+      return false;
+    }
+    
+  }
+
+      
       public function save_osticaletters() {
            
             $data = array(
-                'refno' => $this->input->post('refno'),
+                
                 'service_type' => $this->input->post('service_type'),
                 'date' => $this->input->post('date'),
                 'lanip' => $this->input->post('lanip'),
-                'ipid' => $this->input->post('ipid'),
+                // 'ipid' => $this->input->post('ipid'),
                 'band_width' => $this->input->post('band_width'),
                 'site_ict' => $this->input->post('site_ict'),
                 'sitephone' => $this->input->post('sitephone'),
@@ -1462,13 +2161,35 @@ public function free_status($post)
                 // 'post_status' => 1,
                 
             );
+            echo $this->input->post('lanip');
+
             $query = $this->db->insert('osticaletters', $data);
             if ($query) {
+                  $letterip =  $this->input->post('lanip');
+
+                   $data1 = array(
+                    'free_status'=>2
+
+                   );
+                   $this->db->where('freeip.id',$letterip);
+
+                    $query1 = $this->db->update('freeip',$data1);
+
+                              if ($query1) {
+                                  return TRUE;
+
+
+                             } else {
+                                   return FALSE;
+                                 }
+
+                  } else {
+                        return FALSE;
+                  }
                   return TRUE;
-            } else {
-                  return FALSE;
-            }
-      } public function save_mletter() {
+
+      } 
+      public function save_mletter() {
            
             $data = array(
                 
@@ -1573,7 +2294,7 @@ public function free_status($post)
             }
       }
 
-      public function getipcomment()
+           public function getipcomment()
       {
             $this->db->select('*');
             $this->db->order_by('id' , 'DESC');

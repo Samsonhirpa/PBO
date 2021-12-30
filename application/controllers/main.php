@@ -1,4 +1,3 @@
-
 <?php  
  defined('BASEPATH') OR exit('No direct script access allowed');  
  class Main extends CI_Controller { 
@@ -26,6 +25,21 @@
             redirect('main/');
       }
       }  
+
+      
+
+public function addcabines(){
+    if($this->session->userdata('username')) {
+      $this->load->view('template/link');
+      $this->load->view('template/topmenu');
+      $this->load->view('template/sidemenu');
+      $this->load->view('cabine/addcabines');
+      $this->load->view('template/footer.php');
+    }
+    else{
+      redirect('');
+    }
+  }
       function check_email_avalibility()  
       {  
            // if(!filter_var($_POST["ipid"], FILTER_VALIDATE_EMAIL))  
@@ -67,6 +81,47 @@
       // }       
  }
 
+ function check_email_avalibility1()  
+      {  
+           // if(!filter_var($_POST["ipid"], FILTER_VALIDATE_EMAIL))  
+           // {  
+           //      echo '<label class="text-danger"><span class="glyphicon glyphicon-remove"></span> Invalid Email</span></label>';  
+           // }  
+           // else  
+           // {  
+                $this->load->model("main_model");  
+                if($this->main_model->is_email_available($_POST["ipid"]))  
+                {  
+                     echo '<label class="text-danger"><span class="glyphicon glyphicon-remove"></span> ID Already registered</label>';  
+                }  
+                else  
+                {  
+                     echo '<label class="text-success"><span class="glyphicon glyphicon-ok"></span> ID Available</label>';  
+                }  
+      //      }  
+      // }       
+ }
+ function check_lanip_avalibility1()  
+      {  
+           // if(!filter_var($_POST["ipid"], FILTER_VALIDATE_EMAIL))  
+           // {  
+           //      echo '<label class="text-danger"><span class="glyphicon glyphicon-remove"></span> Invalid Email</span></label>';  
+           // }  
+           // else  
+           // {  
+                $this->load->model("main_model");  
+                if($this->main_model->is_lanip_available($_POST["lanip"]))  
+                {  
+                     echo '<label class="text-danger"><span class="glyphicon glyphicon-remove"></span> LANIP Already registered</label>';  
+                }  
+                else  
+                {  
+                     echo '<label class="text-success"><span class="glyphicon glyphicon-ok"></span> LANIP Available</label>';  
+                }  
+      //      }  
+      // }       
+ }
+
 
 
  function check_carbonid_avalibility()  
@@ -83,7 +138,7 @@
                 }  
         
  }
- function check_carbonlan_avalibility()  
+ function check_carbonlanip_avalibility()  
       {  
           
                 $this->load->model("main_model");  

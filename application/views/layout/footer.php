@@ -1,8 +1,8 @@
 <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b><a><href="#">Dev by Samson & Negalign <a></b> 
+      <b><a>Dev by ATSTO </a></b> 
     </div>
-    <strong>Copyright &copy; 2021 <a href="https://adminlte.io">ATSTQO</a>.</strong> All rights
+    <strong>Copyright &copy; 2021 <a href="https://adminlte.io">ATSTO</a>.</strong> All rights
     reserved.
   </footer>
 
@@ -16,6 +16,7 @@
 <!-- jQuery UI 1.11.4 -->
 <script src="<?php echo base_url();?>bower_components/jquery-ui/jquery-ui.min.js"></script>
 <!-- footer for front header -->
+
 
 
 <!-- <script src="<?php echo base_url();?>front/js/jquery-3.3.1.min.js"></script> -->

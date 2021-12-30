@@ -951,6 +951,27 @@ public function delete_population($id)
             } else {
                   return false;
             }
+      } public function getmudamaa() {
+            $sid = $this->input->post('sid');
+            $this->db->where('sector_id', $sid);
+
+            $query = $this->db->get('title');
+            if ($query) {
+                  return $query->result();
+            } else {
+                  return false;
+            }
+      }
+       public function getipid() {
+            $sid = $this->input->post('sid');
+            $this->db->where('freeip.id', $sid);
+
+            $query = $this->db->get('freeip');
+            if ($query) {
+                  return $query->result();
+            } else {
+                  return false;
+            }
       }
 
       public function getWoreda1() {

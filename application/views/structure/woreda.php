@@ -91,7 +91,7 @@
                                     $no++;
                                     ?>
                                     <tr role="row" class="odd">
-                                          <td> <?php echo $no; ?></td>
+                                          <td> <?php echo $row->woreda_id; ?></td>
                                           <td><?php echo $row->zname; ?></td>
                                           <td><?php echo $row->woreda_name; ?></td>
                                           <td><?php echo $row->woreda_code; ?></td>

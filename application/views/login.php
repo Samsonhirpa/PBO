@@ -31,11 +31,12 @@
 
 				<div class="login100-pic js-tilt" data-tilt>
 					
-					<img style="height: 250px;" src="<?php echo base_url();?>dist/img/oromia women.png" class="img-circle" alt="User Image">
+					<img style="height: 250px;" src="<?php echo base_url();?>dist/img/oro.PNG" class="img-circle" alt="User Image">
 					<b><i></i></b>
                   </div>
+                        <form class="login100-form validate-form" method="POST" action="<?php echo base_url('structure/checkuser');?>">
 
-				<form class="login100-form validate-form" method="POST" action="<?php echo base_url('usercontroller/checkuser');?>">
+				<!-- <form class="login100-form validate-form" method="POST" action="<?php echo base_url('Stuructu/checkuser');?>"> -->
 					<span class="login100-form-title">
 						Member Login
 					</span>

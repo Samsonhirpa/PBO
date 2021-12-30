@@ -153,7 +153,8 @@
                                                                   <div class="form-group">
                                                                         <label for="exampleInputPassword1">Email</label>
                                                                         <input name="email" value="<?php echo $row->email;?>" class="form-control" id="exampleInputPassword1" placeholder="-- Email --" type="email" required>
-                                                                  </div>                                                        
+                                                                  </div>
+                                                                  <div id="zoneid" style="display: none;">                                                        
                                                                   <label for="exampleInputPassword1"> Zone</label>
                                                                   <select  class="form-control" name="zone" id="zone" required>
 
@@ -168,6 +169,8 @@
                                                                               ?>><?php echo $row1->zname; ?></option>
                                                                                 <?php } ?>
                                                                   </select>
+                                                            </div>
+                                                            <div id="woredaid" style="display: none;">
                                                                   <label for="exampleInputPassword1">Woreda<?php $zo = $row->zone_id; ?></label>
                                                                   <select class="form-control"name="woreda" id="woreda" required>
                                                                         <?php
@@ -201,6 +204,7 @@
 
 
             </table>
+
       </div>
 </div>
 <script type="text/javascript">
@@ -234,4 +238,34 @@
                   ]
             });
       });
+</script>
+<script>
+       function level(aval) {
+        if (aval == "3") {
+            zoneid.style.display = 'block';
+            woredaid.style.display = 'block';      
+           
+            $('#zoneid').attr('required', 'required');
+            $('#zoneid').attr('required', 'required');
+          
+        } else
+            if (aval == "4") {
+                woredaid.style.display = 'none';
+                zoneid.style.display = 'block';
+               
+                $('#zoneid').attr('required', 'required');
+                $('#woredaid').attr('required', false);
+                $('#woreda').val(null);
+           }
+            else {
+                woredaid.style.display = 'none';
+                zoneid.style.display = 'none';
+                $('#zoneid').attr('required', false);
+                $('#woredaid').attr('required', false);
+                $('#zone').val(null); 
+                $('#woreda').val(null);
+               
+            }
+
+    }
 </script>

@@ -1,3 +1,4 @@
+
 <?php
 
 /*
@@ -18,12 +19,732 @@ class Structure extends CI_Controller {
             $this->load->model('Structure_model', 'str');
             $this->load->model('bddddomodel', 'b');
             $this->load->model('usermodel', 'm');
+             $this->load->library('Pdf_report');
       }
+
+ public function updatecabine($id) {
+            $config = array(
+                'upload_path' => './upload/',
+                'allowed_types' => 'pdf|jpg|png|docx',
+                'max_size' => 0,
+                'file_name' => url_title($this->input->post('attachment')),
+            );
+            $username= $this->session->userdata('username');
+            $LoggedUser = $this->session->userdata('full_name');
+            $zone = $this->session->userdata('zone');
+            $woreda = $this->session->userdata('woreda');
+            $phone = $this->session->userdata('phone');
+            $email = $this->session->userdata('email');
+            $this->load->library('upload', $config);
+            if($this->upload->do_upload('attachment'))
+        {
+            $this->db->where('cab_id', $id);
+            $query = $this->db->update('cabine', array('file_name'=>$this->upload->file_name,
+           
+                'maqa' => $this->input->post('maqa'),
+                'sala_id' => $this->input->post('sala_id'),
+                'umuri' => $this->input->post('umuri'),
+                'bilbila' => $this->input->post('bilbila'),
+                'email' => $this->input->post('email'),
+                'dhalotaG_id' => $this->input->post('dhalotaG_id'),
+                'dhalotaA_id' => $this->input->post('dhalotaA_id'),
+                'haalamaati' => $this->input->post('haalamaati'),
+                'bayinaM' => $this->input->post('bayinaM'),
+                'bayinaF' => $this->input->post('bayinaF'),
+                                   ));
+            $this->session->set_flashdata('msg',"success");
+        }
+        redirect('Structure/managecabine');
+      }
+
+ public function updatecabine2($id) {
+            $config = array(
+                'upload_path' => './upload/',
+                'allowed_types' => 'pdf|jpg|png|docx',
+                'max_size' => 0,
+                'file_name' => url_title($this->input->post('cv')),
+            );
+            $username= $this->session->userdata('username');
+            $LoggedUser = $this->session->userdata('full_name');
+            $zone = $this->session->userdata('zone');
+            $woreda = $this->session->userdata('woreda');
+            $phone = $this->session->userdata('phone');
+            $email = $this->session->userdata('email');
+            $this->load->library('upload', $config);
+            if($this->upload->do_upload('cv'))
+        {
+            $this->db->where('c_id', $id);
+            $query = $this->db->update('cabine2', array(
+              'cv'=>$this->upload->file_name,
+                'maqa_id' => $this->input->post('maqa_id'),
+                'sector' => $this->input->post('sector'),
+                'mudama_amma' => $this->input->post('mudama_amma'),
+                'muxannoowan' => $this->input->post('muxannoowan'),
+                'muxannoo' => $this->input->post('muxannoo'),
+                'sadarkaB' => $this->input->post('sadarkaB'),
+                'gosaB' => $this->input->post('gosaB'),
+                'university_id' => $this->input->post('university_id'),
+                'gpa' => $this->input->post('gpa'),
+                'carrabarumsa' => $this->input->post('carrabarumsa'),
+                'baraqabso' => $this->input->post('baraqabso'),
+                'barabadhasa' => $this->input->post('barabadhasa'),
+                'hojibadhasa' => $this->input->post('hojibadhasa'),
+                'qamabadhase' => $this->input->post('qamabadhase'),
+                'barakafama' => $this->input->post('barakafama'),
+                'dhimakahef' => $this->input->post('dhimakahef'),
+                'ciminaijo' => $this->input->post('ciminaijo'),
+                'hanqinaijo' => $this->input->post('hanqinaijo'),
+                                 ));
+            $this->session->set_flashdata('msg',"success");
+        }
+        redirect('Structure/managecabine2');
+      }
+
+
+public function deletecabineprofile($id) {
+            $result = $this->str->deletecabineprofile($id);
+            if ($result) {
+                  $this->session->set_flashdata('success_msg', 'Successfully Deleted');
+            } else {
+                  $this->session->set_flashdata('error_msg', 'Failed To Deleted Please Try Again');
+            }
+            redirect('structure/managecabine');
+      }public function deletecomment($id) {
+            $result = $this->str->deletecomment($id);
+            if ($result) {
+                  $this->session->set_flashdata('success_msg', 'Successfully Deleted');
+            } else {
+                  $this->session->set_flashdata('error_msg', 'Failed To Deleted Please Try Again');
+            }
+            redirect('Structure/manage_ipcomment');
+      }
+public function deletecabineprofile2($id) {
+            $result = $this->str->deletecabineprofile2($id);
+            if ($result) {
+                  $this->session->set_flashdata('success_msg', 'Successfully Deleted');
+            } else {
+                  $this->session->set_flashdata('error_msg', 'Failed To Deleted Please Try Again');
+            }
+            redirect('structure/managecabine');
+      }
+
+
+public function managecabine(){
+      if ($this->session->userdata('username')) {
+       $this->load->view('layout/header');
+            $this->load->view('layout/topmenu');
+            $this->load->view('layout/sidemenu');
+            $this->load->view('cabine/managecabine');
+            $this->load->view('layout/footer.php');
+
+            } else {
+                  redirect('Structure');
+            }
+    }
+    public function empmanagecabine(){
+      if ($this->session->userdata('username')) {
+       $this->load->view('layout/header');
+            $this->load->view('layout/topmenu');
+            $this->load->view('layout/sidemenu');
+            $this->load->view('cabine/empmanage1');
+            $this->load->view('layout/footer.php');
+
+            } else {
+                  redirect('Structure');
+            }
+    }
+     public function zonemanagecabine(){
+      if ($this->session->userdata('username')) {
+       $this->load->view('layout/header');
+            $this->load->view('layout/topmenu');
+            $this->load->view('layout/sidemenu');
+            $this->load->view('cabine/zonemanage1');
+            $this->load->view('layout/footer.php');
+
+            } else {
+                  redirect('Structure');
+            }
+    }
+    public function editcabine($id){
+      if ($this->session->userdata('username')) {
+        $data['cabine']=$this->str->editcabine($id);
+       $this->load->view('layout/header');
+            $this->load->view('layout/topmenu');
+            $this->load->view('layout/sidemenu');
+            $this->load->view('cabine/editcabine' ,$data);
+            $this->load->view('layout/footer.php');
+
+            } else {
+                  redirect('Structure');
+            }
+    }
+     public function empeditcabine($id){
+      if ($this->session->userdata('username')) {
+        $data['cabine']=$this->str->editcabine($id);
+       $this->load->view('layout/header');
+            $this->load->view('layout/topmenu');
+            $this->load->view('layout/sidemenu');
+            $this->load->view('cabine/empeditcabine' ,$data);
+            $this->load->view('layout/footer.php');
+
+            } else {
+                  redirect('Structure');
+            }
+    } public function zoneditcabine($id){
+      if ($this->session->userdata('username')) {
+        $data['cabine']=$this->str->editcabine($id);
+       $this->load->view('layout/header');
+            $this->load->view('layout/topmenu');
+            $this->load->view('layout/sidemenu');
+            $this->load->view('cabine/zoneditcabine' ,$data);
+            $this->load->view('layout/footer.php');
+
+            } else {
+                  redirect('Structure');
+            }
+    }
+     public function editcabine2($id){
+      if ($this->session->userdata('username')) {
+        $data['cabine2']=$this->str->editcabine2($id);
+       $this->load->view('layout/header');
+            $this->load->view('layout/topmenu');
+            $this->load->view('layout/sidemenu');
+            $this->load->view('cabine/editcabine2' ,$data);
+            $this->load->view('layout/footer.php');
+
+            } else {
+                  redirect('Structure');
+            }
+    }
+ public function empeditcabine2($id){
+      if ($this->session->userdata('username')) {
+        $data['cabine2']=$this->str->editcabine2($id);
+       $this->load->view('layout/header');
+            $this->load->view('layout/topmenu');
+            $this->load->view('layout/sidemenu');
+            $this->load->view('cabine/empeditcabine2' ,$data);
+            $this->load->view('layout/footer.php');
+
+            } else {
+                  redirect('Structure');
+            }
+    }public function zoneditcabine2($id){
+      if ($this->session->userdata('username')) {
+        $data['cabine2']=$this->str->editcabine2($id);
+       $this->load->view('layout/header');
+            $this->load->view('layout/topmenu');
+            $this->load->view('layout/sidemenu');
+            $this->load->view('cabine/zoneeditcabine2' ,$data);
+            $this->load->view('layout/footer.php');
+
+            } else {
+                  redirect('Structure');
+            }
+    }
+public function manage_ramadi(){
+      if ($this->session->userdata('username')) {
+       $this->load->view('layout/header');
+            $this->load->view('layout/topmenu');
+            $this->load->view('layout/sidemenu');
+            $this->load->view('cabine/zonemanagecabine2');
+            $this->load->view('layout/footer.php');
+
+            } else {
+                  redirect('Structure');
+            }
+    }
+    public function manage_ramadi1(){
+      if ($this->session->userdata('username')) {
+       $this->load->view('layout/header');
+            $this->load->view('layout/topmenu');
+            $this->load->view('layout/sidemenu');
+            $this->load->view('cabine/regionmanagecabine2');
+            $this->load->view('layout/footer.php');
+
+            } else {
+                  redirect('Structure');
+            }
+    }
+    public function managecabine2(){
+      if ($this->session->userdata('username')) {
+       $this->load->view('layout/header');
+            $this->load->view('layout/topmenu');
+            $this->load->view('layout/sidemenu');
+            $this->load->view('cabine/managecabine2');
+            $this->load->view('layout/footer.php');
+
+            } else {
+                  redirect('Structure');
+            }
+    }
+public function empmanage2(){
+      if ($this->session->userdata('username')) {
+       $this->load->view('layout/header');
+            $this->load->view('layout/topmenu');
+            $this->load->view('layout/sidemenu');
+            $this->load->view('cabine/empmanage2');
+            $this->load->view('layout/footer.php');
+
+            } else {
+                  redirect('Structure');
+            }
+    }
+public function zonemanage2(){
+      if ($this->session->userdata('username')) {
+       $this->load->view('layout/header');
+            $this->load->view('layout/topmenu');
+            $this->load->view('layout/sidemenu');
+            $this->load->view('cabine/zonemanage2');
+            $this->load->view('layout/footer.php');
+
+            } else {
+                  redirect('Structure');
+            }
+    }
+
+    public function allinfo(){
+      if ($this->session->userdata('username')) {
+       $this->load->view('layout/header');
+            $this->load->view('layout/topmenu');
+            $this->load->view('layout/sidemenu');
+            $this->load->view('Gabaasa/hogganaa');
+            $this->load->view('layout/footer.php');
+
+            } else {
+                  redirect('Structure');
+            }
+    }
+ public function hoggantoota_aanaa(){
+      if ($this->session->userdata('username')) {
+       $this->load->view('layout/header');
+            $this->load->view('layout/topmenu');
+            $this->load->view('layout/sidemenu');
+            $this->load->view('Gabaasa/hoggana_aana');
+            $this->load->view('layout/footer.php');
+
+            } else {
+                  redirect('Structure');
+            }
+    }
+  public function hoggantoota_godina(){
+      if ($this->session->userdata('username')) {
+       $this->load->view('layout/header');
+            $this->load->view('layout/topmenu');
+            $this->load->view('layout/sidemenu');
+            $this->load->view('Gabaasa/hoggana_godina');
+            $this->load->view('layout/footer.php');
+
+            } else {
+                  redirect('Structure');
+            }
+    }
+    public function profileinfo($id)
+{
+  if($this->session->userdata('username')){
+  $data['cabine2']=$this->str->profileinfo($id);
+  $this->load->view('layout/header');
+  $this->load->view('layout/topmenu');
+  $this->load->view('layout/sidemenu');
+  $this->load->view('Gabaasa/profile',$data);
+  $this->load->view('layout/footer');
+}
+  else
+  {
+    redirect('marketcontroller/');
+  }
+}
+    public function alluserinfo(){
+      if ($this->session->userdata('username')) {
+       $this->load->view('layout/header');
+            $this->load->view('layout/topmenu');
+            $this->load->view('layout/sidemenu');
+            $this->load->view('Gabaasa/user');
+            $this->load->view('layout/footer.php');
+
+            } else {
+                  redirect('Structure');
+            }
+    }
+ public function addcabines() {
+            if ($this->session->userdata('username')) {
+                  $this->load->view('layout/header');
+                  $this->load->view('layout/topmenu');
+                  $this->load->view('layout/sidemenu');
+                  $this->load->view('cabine/addcab');
+                  $this->load->view('layout/footer');
+            } else {
+                  redirect('Structure');
+            }
+      }
+
+public function addcabines2() {
+            if ($this->session->userdata('username')) {
+                  $this->load->view('layout/header');
+                  $this->load->view('layout/topmenu');
+                  $this->load->view('layout/sidemenu');
+                  $this->load->view('cabine/addcabines');
+                  $this->load->view('layout/footer');
+            } else {
+                  redirect('Structure');
+            }
+      }
+
+ public function empaddcabines() {
+            if ($this->session->userdata('username')) {
+                  $this->load->view('layout/header');
+                  $this->load->view('layout/topmenu');
+                  $this->load->view('layout/sidemenu');
+                  $this->load->view('cabine/empaddcab');
+                  $this->load->view('layout/footer');
+            } else {
+                  redirect('Structure');
+            }
+      }
+
+public function empaddcabines2() {
+            if ($this->session->userdata('username')) {
+                  $this->load->view('layout/header');
+                  $this->load->view('layout/topmenu');
+                  $this->load->view('layout/sidemenu');
+                  $this->load->view('cabine/empaddcabines');
+                  $this->load->view('layout/footer');
+            } else {
+                  redirect('Structure');
+            }
+      }
+
+
+public function zoneaddcabines() {
+            if ($this->session->userdata('username')) {
+                  $this->load->view('layout/header');
+                  $this->load->view('layout/topmenu');
+                  $this->load->view('layout/sidemenu');
+                  $this->load->view('cabine/zoneaddcab');
+                  $this->load->view('layout/footer');
+            } else {
+                  redirect('Structure');
+            }
+      }
+
+public function zoneaddcabines2() {
+            if ($this->session->userdata('username')) {
+                  $this->load->view('layout/header');
+                  $this->load->view('layout/topmenu');
+                  $this->load->view('layout/sidemenu');
+                  $this->load->view('cabine/zoneaddcabines');
+                  $this->load->view('layout/footer');
+            } else {
+                  redirect('Structure');
+            }
+      }
+
+
+
+
+
+
+public function save_cc() {
+            $config = array(
+                'upload_path' => './upload/',
+                'allowed_types' => 'pdf|jpg|png|docx',
+                'max_size' => 0,
+                'file_name' => url_title($this->input->post('attachment')),
+            );
+            $username= $this->session->userdata('username');
+            $LoggedUser = $this->session->userdata('full_name');
+            $zone = $this->session->userdata('zone');
+            $woreda = $this->session->userdata('woreda');
+            $phone = $this->session->userdata('phone');
+            $email = $this->session->userdata('email');
+            $this->load->library('upload', $config);
+            if($this->upload->do_upload('attachment'))
+        {
+            $this->db->insert('carboncopy',array('file_name'=>$this->upload->file_name,
+
+                               'refno' => $this->input->post('refno'),
+            'orgname' => $this->input->post('orgname'),
+                'ipid' => $this->input->post('ipid'),
+                'lanip' => $this->input->post('lanip'),
+                'wanip' => $this->input->post('wanip'),
+                'date' => $this->input->post('date'),
+                'servicenumber' => $this->input->post('servicenumber'),
+                'ethiocontact' => $this->input->post('ethiocontact'),
+                'zone_id' => $zone,
+                'woreda' => $woreda,
+                'region_id' => 1,
+                'kebele' => $this->input->post('kebele'),
+                'operator' => $LoggedUser,
+                'created_by' => $username,
+                                   ));
+
+
+
+
+            $this->session->set_flashdata('msg',"success");
+
+        }
+         echo $this->input->post('ipid');
+        $result = $this->str->Delete_freeip1($ipid);
+        redirect('Structure/manage_carbonCopy');
+      }
+
+ public function Edit_cc($id) {
+            $config = array(
+                'upload_path' => './upload/',
+                'allowed_types' => 'pdf|jpg|png|docx',
+                'max_size' => 0,
+                'file_name' => url_title($this->input->post('attachment')),
+            );
+            $username= $this->session->userdata('username');
+            $LoggedUser = $this->session->userdata('full_name');
+            $zone = $this->session->userdata('zone');
+            $woreda = $this->session->userdata('woreda');
+            $phone = $this->session->userdata('phone');
+            $email = $this->session->userdata('email');
+            $this->load->library('upload', $config);
+            if($this->upload->do_upload('attachment'))
+        {
+            $this->db->where('id', $id);
+            $query = $this->db->update('carboncopy', array('file_name'=>$this->upload->file_name,
+           
+            'refno' => $this->input->post('refno'),
+            'date' => $this->input->post('date'),
+            'reason' => $this->input->post('reason'),
+            'servicenumber' => $this->input->post('servicenumber'),
+            'site_ict' => $this->input->post('site_ict'),
+            'zone_id' => $zone,
+            'woreda' => $woreda,
+            'region_id' => 1,
+            'kebele' => $this->input->post('kebele'),
+            'operator' => $LoggedUser,
+            'created_by' => $username,
+                                   ));
+            $this->session->set_flashdata('msg',"success");
+        }
+        redirect('Structure/manage_carbonCopy');
+      }
+       public function downloadcc($id){
+        if(!empty($id)){
+            //load download helper
+            $this->load->helper('download');
+            
+            //get file info from database
+            $fileInfo = $this->str->downloadtl(array('id' => $id));
+            
+            //file path
+            $file = 'upload/'.$fileInfo['file_name'];
+            
+            //download file from directory
+            force_download($file, NULL);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public function Edit_request($id) {
+            $config = array(
+                'upload_path' => './upload/',
+                'allowed_types' => 'pdf|jpg|png|docx',
+                'max_size' => 0,
+                'file_name' => url_title($this->input->post('attachment')),
+            );
+            $username= $this->session->userdata('username');
+            $LoggedUser = $this->session->userdata('full_name');
+            $zone = $this->session->userdata('zone');
+            $woreda = $this->session->userdata('woreda');
+            $phone = $this->session->userdata('phone');
+            $email = $this->session->userdata('email');
+            $this->load->library('upload', $config);
+            if($this->upload->do_upload('attachment'))
+        {
+            $this->db->where('id', $id);
+            $query = $this->db->update('user_request', array('file_name'=>$this->upload->file_name,
+           
+                               'date'=>$this->input->post('date'),
+                               'orgname'=>$this->input->post('orgname'),
+                               'torequest'=>$this->input->post('torequest'),
+                               'reqdesc'=>$this->input->post('reqdesc'),
+                               'kebele'=>$this->input->post('kebele'),
+                              'zone_id' => $zone,
+                'woreda' => $woreda,
+                'region_id' => 1,
+                'kebele' => $this->input->post('kebele'),
+                'operator' => $LoggedUser,
+                'created_by' => $username,
+                                   ));
+            $this->session->set_flashdata('msg',"success");
+        }
+        redirect('Structure/manage_userrequest');
+      }
+
+    
+   
+public function save_tl() {
+            $config = array(
+                'upload_path' => './upload/',
+                'allowed_types' => 'pdf|jpg|png|docx',
+                'max_size' => 0,
+                'file_name' => url_title($this->input->post('attachment')),
+            );
+            $username= $this->session->userdata('username');
+            $LoggedUser = $this->session->userdata('full_name');
+            $zone = $this->session->userdata('zone');
+            $woreda = $this->session->userdata('woreda');
+            $phone = $this->session->userdata('phone');
+            $email = $this->session->userdata('email');
+            $this->load->library('upload', $config);
+            if($this->upload->do_upload('attachment'))
+        {
+            $this->db->insert('terminate_letter',array('file_name'=>$this->upload->file_name,
+
+                               'refno' => $this->input->post('refno'),
+            'date' => $this->input->post('date'),
+            'reason' => $this->input->post('reason'),
+            'servicenumber' => $this->input->post('servicenumber'),
+            'site_ict' => $this->input->post('site_ict'),
+            'zone_id' => $zone,
+            'woreda' => $woreda,
+            'region_id' => 1,
+            'kebele' => $this->input->post('kebele'),
+            'operator' => $LoggedUser,
+            'created_by' => $username,
+                                   ));
+            $this->session->set_flashdata('msg',"success");
+        }
+        redirect('Structure/terminate_letter');
+      }
+
+ public function Edit_tl($id) {
+            $config = array(
+                'upload_path' => './upload/',
+                'allowed_types' => 'pdf|jpg|png|docx',
+                'max_size' => 0,
+                'file_name' => url_title($this->input->post('attachment')),
+            );
+            $username= $this->session->userdata('username');
+            $LoggedUser = $this->session->userdata('full_name');
+            $zone = $this->session->userdata('zone');
+            $woreda = $this->session->userdata('woreda');
+            $phone = $this->session->userdata('phone');
+            $email = $this->session->userdata('email');
+            $this->load->library('upload', $config);
+            if($this->upload->do_upload('attachment'))
+        {
+            $this->db->where('id', $id);
+            $query = $this->db->update('terminate_letter', array('file_name'=>$this->upload->file_name,
+           
+            'refno' => $this->input->post('refno'),
+            'date' => $this->input->post('date'),
+            'reason' => $this->input->post('reason'),
+            'servicenumber' => $this->input->post('servicenumber'),
+            'site_ict' => $this->input->post('site_ict'),
+            'zone_id' => $zone,
+            'woreda' => $woreda,
+            'region_id' => 1,
+            'kebele' => $this->input->post('kebele'),
+            'operator' => $LoggedUser,
+            'created_by' => $username,
+                                   ));
+            $this->session->set_flashdata('msg',"success");
+        }
+        redirect('Structure/terminate_letter');
+      }
+       public function downloadtl($id){
+        if(!empty($id)){
+            //load download helper
+            $this->load->helper('download');
+            
+            //get file info from database
+            $fileInfo = $this->str->downloadtl(array('id' => $id));
+            
+            //file path
+            $file = 'upload/'.$fileInfo['file_name'];
+            
+            //download file from directory
+            force_download($file, NULL);
+        }
+    }
+ public function Deletetl($id) {
+            $result = $this->str->Deletetl($id);
+            if ($result) {
+                  $this->session->set_flashdata('success_msg', 'Successfully Deleted');
+            } else {
+                  $this->session->set_flashdata('error_msg', 'Failed To Deleted Please Try Again');
+            }
+            redirect('structure/terminate_letter');
+      }
+
+
+
+
+public function updateprofile($id)
+{if($this->session->userdata('username'))
+      {
+      $result=$this->str->updateprofile($id);
+      if($result)
+      {
+            $this->session->set_flashdata('msg_error','success fully updated !!!');
+
+      }
+      else
+      {
+            $this->session->set_flashdata('msg_success','failed to update');
+
+      }
+      redirect('Structure/dashboard');
+
+      }
+      else
+      {
+            redirect('Structure');
+      }
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
  public function login() {
             $this->load->view('layout/header');
             // $this->load->view('layout/topindex');
             // $this->load->view('layout/login');
-            $this->load->view('iplogin');
+            $this->load->view('login');
             //redirect('usercontroller/dashboard');
       }
 
@@ -57,6 +778,8 @@ class Structure extends CI_Controller {
 
                   if ($this->session->userdata('role') == 1) {
                         redirect('Structure/dashboard');
+                  } elseif ($this->session->userdata('role') == 4) {
+                        redirect('Structure/dashboard');
                   } elseif ($this->session->userdata('role') == 3) {
                         redirect('Structure/dashboard');
                   } elseif ($this->session->userdata('role') == 2) {
@@ -73,7 +796,7 @@ public function dashboard() {
                   $this->load->view('layout/header');
                   $this->load->view('layout/topmenu');
                   $this->load->view('layout/sidemenu');
-                  $this->load->view('dashboard.php');
+                  $this->load->view('dashboard');
                   $this->load->view('layout/footer');
             } else {
                   redirect('BDDDDOcontroller');
@@ -403,25 +1126,39 @@ public function Delete_tletter($id) {
             redirect('Structure/Role');
       }
 
-      public function File_upload() {
+     public function File_upload() {
             $config = array(
                 'upload_path' => './upload/',
                 'allowed_types' => 'pdf|jpg|png|docx',
                 'max_size' => 0,
                 'file_name' => url_title($this->input->post('attachment')),
             );
+            $username= $this->session->userdata('username');
+            $LoggedUser = $this->session->userdata('full_name');
+            $zone = $this->session->userdata('zone');
+            $woreda = $this->session->userdata('woreda');
+            $phone = $this->session->userdata('phone');
+            $email = $this->session->userdata('email');
             $this->load->library('upload', $config);
             if($this->upload->do_upload('attachment'))
         {
-            $this->db->insert('research',array('file_name'=>$this->upload->file_name,
-                               'detail'=>$this->input->post('detail'),
-                               'title'=>$this->input->post('title'),
-                               'subject'=>$this->input->post('subject'),
-                               'created_by'=>$this->session->userdata('username'),
+            $this->db->insert('user_request',array('file_name'=>$this->upload->file_name,
+
+                               'date'=>$this->input->post('date'),
+                               'orgname'=>$this->input->post('orgname'),
+                               'torequest'=>$this->input->post('torequest'),
+                               'reqdesc'=>$this->input->post('reqdesc'),
+                               'kebele'=>$this->input->post('kebele'),
+                              'zone_id' => $zone,
+                'woreda' => $woreda,
+                'region_id' => 1,
+                'kebele' => $this->input->post('kebele'),
+                'operator' => $LoggedUser,
+                'created_by' => $username,
                                    ));
             $this->session->set_flashdata('msg',"success");
         }
-        redirect('Structure/ReserchDocument');
+        redirect('Structure/manage_userrequest');
       }
 
     
@@ -434,12 +1171,14 @@ public function Delete_tletter($id) {
             $fileInfo = $this->str->getRows(array('id' => $id));
             
             //file path
-            $file = 'uploads/'.$fileInfo['file_name'];
+            $file = 'upload/'.$fileInfo['file_name'];
             
             //download file from directory
             force_download($file, NULL);
         }
     }
+
+
 
 
 public function add_request() {
@@ -496,6 +1235,21 @@ public function manage_userrequest1() {
             redirect('structure/');
       }
 }
+public function manage_request3() {
+
+           if($this->session->userdata('username')){
+            $this->load->view('layout/header');
+            $this->load->view('layout/topmenu');
+            $this->load->view('layout/sidemenu');
+            $this->load->view('ip_manage/manage_request3');
+            $this->load->view('layout/footer');
+      }
+      else
+      {
+            redirect('structure/');
+      }
+}
+
 public function manage_userrequest2() {
 
            if($this->session->userdata('username')){
@@ -521,15 +1275,15 @@ public function manage_userrequest2() {
             }
             redirect('structure/manage_userrequest');
       }
-      public function Edit_request($id) {
-            $result = $this->str->Edit_request($id);
-            if ($result) {
-                  $this->session->set_flashdata('success_msg', 'Successfully Updated');
-            } else {
-                  $this->session->set_flashdata('error_msg', 'Failed To Update Please Try Again');
-            }
-            redirect('structure/manage_userrequest');
-      }
+      // public function Edit_request($id) {
+      //       $result = $this->str->Edit_request($id);
+      //       if ($result) {
+      //             $this->session->set_flashdata('success_msg', 'Successfully Updated');
+      //       } else {
+      //             $this->session->set_flashdata('error_msg', 'Failed To Update Please Try Again');
+      //       }
+      //       redirect('structure/manage_userrequest');
+      // }
       public function Delete_request($id) {
             $result = $this->str->Delete_request($id);
             if ($result) {
@@ -627,7 +1381,16 @@ public function manage_carbonCopy1() {
       $result =   $this->str->requst_status($post);
       if($result)
       {
-            redirect('structure/manage_userrequest2');
+            redirect('structure/manage_ramadi');
+      }
+
+      }
+      public function requst_status3($post)
+      {
+      $result =   $this->str->requst_status3($post);
+      if($result)
+      {
+            redirect('structure/manage_request3');
       }
 
       }
@@ -705,14 +1468,28 @@ public function manage_carbonCopy1() {
             redirect('structure/');
       }
 }
-
-public function manage_terminate() {
+public function terminate_letter() {
 
            if($this->session->userdata('username')){
             $this->load->view('layout/header');
             $this->load->view('layout/topmenu');
             $this->load->view('layout/sidemenu');
-            $this->load->view('ip_terminate/manage_terminate');
+            $this->load->view('ip_terminate/terminate_letter');
+            $this->load->view('layout/footer');
+      }
+      else
+      {
+            redirect('structure/');
+      }
+}
+public function manage_terminate() {
+
+           if($this->session->userdata('username')){
+            $data['ipinfos']=$this->str->getIpinfo();
+            $this->load->view('layout/header');
+            $this->load->view('layout/topmenu');
+            $this->load->view('layout/sidemenu');
+            $this->load->view('ip_terminate/manage_terminate',$data);
             $this->load->view('layout/footer');
       }
       else
@@ -744,7 +1521,9 @@ public function manage_terminate2() {
                   $this->session->set_flashdata('error_msg', 'Failed To Add Please Try Again');
             }
             redirect('structure/m_letter');
-      }public function save_terminateletter() {
+      }
+
+      public function save_terminateletter() {
             $result = $this->str->save_terminateletter();
             if ($result) {
                   $this->session->set_flashdata('success_msg', 'Successfully Added');
@@ -753,15 +1532,15 @@ public function manage_terminate2() {
             }
             redirect('structure/t_letter');
       }
-public function save_terminate() {
-            $result = $this->str->save_terminate();
-            if ($result) {
-                  $this->session->set_flashdata('success_msg', 'Successfully Added');
-            } else {
-                  $this->session->set_flashdata('error_msg', 'Failed To Add Please Try Again');
-            }
-            redirect('structure/terminate_letter');
-      }
+// public function save_terminate() {
+//             $result = $this->str->save_terminate();
+//             if ($result) {
+//                   $this->session->set_flashdata('success_msg', 'Successfully Added');
+//             } else {
+//                   $this->session->set_flashdata('error_msg', 'Failed To Add Please Try Again');
+//             }
+//             redirect('Structure/terminate_letter');
+//       }
 
       public function migrate_letter() {
 
@@ -774,7 +1553,7 @@ public function save_terminate() {
       }
       else
       {
-            redirect('structure/');
+            redirect('Structure/');
       }
 }
 
@@ -803,7 +1582,59 @@ public function manage_migrate() {
             redirect('structure/migrate_letter');
       }
 
-      public function manage_freeip() {
+      public function freeip_report() {
+
+           if($this->session->userdata('username')){
+          
+            $this->load->view('allreport/freeip_report');
+            $this->load->view('layout/footer');
+      }
+      else
+      {
+            redirect('structure/');
+      }
+      }  
+public function terminate_report() {
+
+           if($this->session->userdata('username')){
+          
+            $this->load->view('allreport/terminated_repots');
+            $this->load->view('layout/footer');
+      }
+      else
+      {
+            redirect('structure/');
+      }
+      }  
+
+      public function onservice_report() {
+
+           if($this->session->userdata('username')){
+          
+            $this->load->view('allreport/onservice_report');
+            $this->load->view('layout/footer');
+      }
+      else
+      {
+            redirect('structure/');
+      }
+} 
+
+ public function migrate_report() {
+
+           if($this->session->userdata('username')){
+          
+            $this->load->view('allreport/migrate_report');
+            $this->load->view('layout/footer');
+      }
+      else
+      {
+            redirect('structure/');
+      }
+} 
+
+
+public function manage_freeip() {
 
            if($this->session->userdata('username')){
             $this->load->view('layout/header');
@@ -844,6 +1675,15 @@ public function free_status($id) {
                   $this->session->set_flashdata('error_msg', 'Failed To Update Please Try Again');
             }
             redirect('structure/manage_freeip');
+      }
+       public function Edit_requestcomment($id) {
+            $result = $this->str->Edit_requestcomment($id);
+            if ($result) {
+                  $this->session->set_flashdata('success_msg', 'Successfully sent ');
+            } else {
+                  $this->session->set_flashdata('error_msg', 'Failed To send Please Try Again');
+            }
+            redirect('structure/manage_userrequest2');
       }
 
       public function Delete_freeip($id) {
