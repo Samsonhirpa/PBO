@@ -141,16 +141,6 @@ public function getuniversity(){
       return $query->result();
     }
   }
-  public function getqabxi(){
-
-    $this->db->select('*');
-    $this->db->from('qabxi');
-    $query = $this->db->get();
-    if($query)
-    {
-      return $query->result();
-    }
-  }
   public function getlevel(){
 
     $this->db->select('*');
@@ -160,8 +150,7 @@ public function getuniversity(){
     {
       return $query->result();
     }
-  }
-  public function getsector(){
+  }public function getsector(){
 
     $this->db->select('*');
     $this->db->from('sektera');

@@ -8,7 +8,7 @@ class BDDDDOcontroller extends CI_Controller {
             parent::__construct();
             $this->load->model('bddddomodel', 'b');
             $this->load->model('Structure_model', 'str');
-            //$this->load->library('Pdf_report');
+            $this->load->library('Pdf_report');
             // $this->load->library(['ion_auth', 'form_validation']);
             //       $this->lang->load('auth');
       }
@@ -359,8 +359,16 @@ public function add_training()
                   return false;
             }
       }
- public function getmudamaa() {
+      public function getmudamaa() {
             $result = $this->b->getmudamaa();
+            if ($result) {
+                  echo json_encode($result);
+            } else {
+                  return false;
+            }
+      }
+       public function getipid() {
+            $result = $this->b->getipid();
             if ($result) {
                   echo json_encode($result);
             } else {
@@ -1088,13 +1096,13 @@ public function add_training()
 
 //       public function getbooks()
 //     {
-//          $result=$this->m->getbooks();
-//          if($result){
-//                echo json_encode($result);
+//     	$result=$this->m->getbooks();
+//     	if($result){
+//     	    	echo json_encode($result);
 // }
 // else
 // {
-//    echo "falled";
+// 	echo "falled";
 // }
 //     }
 
@@ -1108,7 +1116,7 @@ public function add_training()
       }
 
       public function upload_file() {
-            //     $data = $this->employee_model->array_from_post(array(
+            // 	 $data = $this->employee_model->array_from_post(array(
 
             $config = array(
                 'upload_path' => 'uploads/',

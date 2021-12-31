@@ -12,7 +12,7 @@ class Cabines extends CI_Controller
         $this->load->model('Structure_model', 'str');
             $this->load->model('bddddomodel', 'b');
             $this->load->model('usermodel', 'm');
-             // $this->load->library('Pdf_report');
+             $this->load->library('Pdf_report');
 		
 	}
 
@@ -206,15 +206,7 @@ public function savecabines2() {
                 'barakafama' => $this->input->post('barakafama'),
                 'dhimakahef' => $this->input->post('dhimakahef'),
                 'ciminaijo' => $this->input->post('ciminaijo'),
-                'hanqinaijo' => $this->input->post('hanqinaijo'),'level' => $this->input->post('level'),
-                'muxano_hog' => $this->input->post('muxano_hog'),
-                'qabxi' => $this->input->post('qabxi'),
-                'bakalenji' => $this->input->post('bakalenji'),
-                'baralenji' => $this->input->post('baralenji'),
-                'gosalenji' => $this->input->post('gosalenji'),
-                'marsa' => $this->input->post('marsa'),
-                'kaffalti' => $this->input->post('kaffalti'),
-                
+                'hanqinaijo' => $this->input->post('hanqinaijo'),
             'zone_id' => $zone,
             'woreda' => $woreda,
       'operator' => $LoggedUser,

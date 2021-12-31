@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 30, 2021 at 11:23 AM
+-- Generation Time: Dec 31, 2021 at 12:35 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -94,7 +94,7 @@ CREATE TABLE `cabine` (
 --
 
 INSERT INTO `cabine` (`cab_id`, `maqa`, `sala_id`, `umuri`, `bilbila`, `email`, `dhalotaG_id`, `dhalotaA_id`, `haalamaati`, `bayinaM`, `bayinaF`, `file_name`, `zon_id`, `woreda_id`, `operator`, `created_by1`) VALUES
-(27, 'Shuumii Garbiche', '1', '66', '0987654321', 'shuiinhirpa@gmail.com', '38', '349', '1', '1', '0', 'ss3.jpg', '20', '81', 'shumi garbiche tsegaye', 'shumii'),
+(27, 'Shuumii Garbiche', '2', '66', '0987654321', 'shuiinhirpa@gmail.com', '21', '330', '2', '1', '0', 'aaa1.jpg', '20', '81', 'shumi garbiche tsegaye', 'shumii'),
 (28, 'tamiru kabada', '1', '26', '0922222524', 'smartallsoftware@gmail.com', '30', '231', '1', '0', '0', 'WIN_20190913_05_02_21_Pro1.jpg', '20', '1', 'caala gezahegn tsegaye', 'cala'),
 (29, 'Tolasa Bacha', '1', '30', '0987654321', 'Samsonhirpa@gmail.com', '35', '165', '1', '1', '1', 'abiy11.jpg', '20', '81', 'shumi garbiche tsegaye', 'shumii'),
 (30, 'Samson Hirpa Tola', '1', '27', '0922222524', 'smartallsoftware@gmail.com', '36', '100', '1', '0', '0', 'a.jpg', '20', '1', 'caala gezahegn tsegaye', 'cala');
@@ -131,18 +131,28 @@ CREATE TABLE `cabine2` (
   `operator` varchar(222) NOT NULL,
   `created_by` varchar(222) NOT NULL,
   `requst_status` int(11) NOT NULL,
-  `request_status2` int(11) NOT NULL
+  `request_status2` int(11) NOT NULL,
+  `muxano_hog` varchar(222) NOT NULL,
+  `level` varchar(222) NOT NULL,
+  `qabxi` varchar(222) NOT NULL,
+  `bakalenji` varchar(222) NOT NULL,
+  `gosalenji` varchar(222) NOT NULL,
+  `baralenji` varchar(222) NOT NULL,
+  `marsa` varchar(222) NOT NULL,
+  `kaffalti` varchar(222) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `cabine2`
 --
 
-INSERT INTO `cabine2` (`c_id`, `maqa_id`, `mudama_amma`, `muxannoowan`, `muxannoo`, `sadarkaB`, `gosaB`, `university_id`, `gpa`, `carrabarumsa`, `baraqabso`, `barabadhasa`, `hojibadhasa`, `qamabadhase`, `barakafama`, `dhimakahef`, `ciminaijo`, `hanqinaijo`, `cv`, `sector`, `zone_id`, `woreda`, `operator`, `created_by`, `requst_status`, `request_status2`) VALUES
-(6, 27, '88', '', 12, '1', '', 3, '', '', '', '', '', '', '', '', '', '', 'ss4.jpg', '12', '20', '81', 'shumi garbiche tsegaye', 'shumii', 2, 0),
-(7, 28, '3', '', 7, '2', 'software', 4, '4.0', 'ostica', '', '', '', '', '', '', '', '', 'WIN_20191016_01_40_04_Pro1.jpg', '1', '20', '1', 'caala gezahegn tsegaye', 'cala', 2, 0),
-(8, 29, '4', '2000-2003 =kantibaa magaalaa burayuu\r\n2004-2006= kantibaa magaalaa adaamaa\r\n2007-haamma ammatti= gargaaraa addaa itti gaafatama waajjiraa partii', 10, '2', 'Management', 3, '3.8', '-', '2000', '2010', 'hoggantumaa', 'wajjira partii badhadhinaa', '-', '-', 'yeroo hundaa yaadoota haaraa fiduun', 'fagagasds', 'Oromia_IP_Management_System_(1)5.pdf', '1', '20', '81', 'shumi garbiche tsegaye', 'shumii', 2, 0),
-(9, 30, '10', 'degrtfhgyjkl;', 6, '1', 'software', 4, '4', 'ostica', '2010', '2010', 'software', '', '--', '-', 'kaka\'umsaaf muuxannooo cimaa qabaachuu', 'ghjkl', 'Oromia_IP_Management_System_(2)1.pdf', '2', '20', '1', 'caala gezahegn tsegaye', 'cala', 2, 0);
+INSERT INTO `cabine2` (`c_id`, `maqa_id`, `mudama_amma`, `muxannoowan`, `muxannoo`, `sadarkaB`, `gosaB`, `university_id`, `gpa`, `carrabarumsa`, `baraqabso`, `barabadhasa`, `hojibadhasa`, `qamabadhase`, `barakafama`, `dhimakahef`, `ciminaijo`, `hanqinaijo`, `cv`, `sector`, `zone_id`, `woreda`, `operator`, `created_by`, `requst_status`, `request_status2`, `muxano_hog`, `level`, `qabxi`, `bakalenji`, `gosalenji`, `baralenji`, `marsa`, `kaffalti`) VALUES
+(6, 27, '88', '', 12, '1', '', 3, '', '', '', '', '', '', '', '', '', '', 'ss4.jpg', '12', '20', '81', 'shumi garbiche tsegaye', 'shumii', 2, 0, '', '', '', '', '', '', '', ''),
+(7, 28, '3', '', 7, '2', 'software', 4, '4.0', 'ostica', '', '', '', '', '', '', '', '', 'WIN_20191016_01_40_04_Pro1.jpg', '1', '20', '1', 'caala gezahegn tsegaye', 'cala', 2, 0, '', '', '', '', '', '', '', ''),
+(8, 29, '4', '2000-2003 =kantibaa magaalaa burayuu\r\n2004-2006= kantibaa magaalaa adaamaa\r\n2007-haamma ammatti= gargaaraa addaa itti gaafatama waajjiraa partii', 10, '2', 'Management', 3, '3.8', '-', '2000', '2010', 'hoggantumaa', 'wajjira partii badhadhinaa', '-', '-', 'yeroo hundaa yaadoota haaraa fiduun', 'fagagasds', 'Oromia_IP_Management_System_(1)5.pdf', '1', '20', '81', 'shumi garbiche tsegaye', 'shumii', 2, 0, '', '', '', '', '', '', '', ''),
+(9, 30, '10', 'degrtfhgyjkl;', 6, '1', 'software', 4, '4', 'ostica', '2010', '2010', 'software', '', '--', '-', 'kaka\'umsaaf muuxannooo cimaa qabaachuu', 'ghjkl', 'Oromia_IP_Management_System_(2)1.pdf', '2', '20', '1', 'caala gezahegn tsegaye', 'cala', 2, 0, '', '', '', '', '', '', '', ''),
+(10, 28, '79', '', 4, '2', '', 2, '', '', '', '', '', '', '', '', '', '', 'earth-g5d276527f_1920.jpg', '3', '20', '380', 'samosn Hirpa Tola', 'samii1234', 0, 0, '4', '1', '2', '', '', '', '', ''),
+(11, 29, '12', '', 4, '2', 'Management', 4, '4.0', '', '1999', '2010', 'hojii bulchinsa gaarii', 'pbo', '-', '-', 'cimtu', 'hin qabdu', 'aaa.jpg', '4', '20', '380', 'samosn Hirpa Tola', 'samii1234', 0, 0, '2', '1', '3', 'ADAMA', '', '2011', '', '185');
 
 -- --------------------------------------------------------
 
@@ -783,6 +793,28 @@ INSERT INTO `permission` (`id`, `name`, `description`, `status`, `created_at`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `qabxi`
+--
+
+CREATE TABLE `qabxi` (
+  `q_id` int(11) NOT NULL,
+  `q_name` varchar(222) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `qabxi`
+--
+
+INSERT INTO `qabxi` (`q_id`, `q_name`) VALUES
+(1, 'A'),
+(2, 'B'),
+(3, 'C'),
+(4, 'D'),
+(5, 'F');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `region`
 --
 
@@ -888,8 +920,11 @@ CREATE TABLE `sadarka` (
 --
 
 INSERT INTO `sadarka` (`sd_id`, `sd_name`) VALUES
-(1, 'Degree'),
-(2, 'Masters');
+(1, 'Diploma'),
+(2, 'Degree'),
+(3, 'Masters'),
+(4, 'PHD'),
+(5, 'Doctor');
 
 -- --------------------------------------------------------
 
@@ -2061,6 +2096,12 @@ ALTER TABLE `permission`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `qabxi`
+--
+ALTER TABLE `qabxi`
+  ADD PRIMARY KEY (`q_id`);
+
+--
 -- Indexes for table `region`
 --
 ALTER TABLE `region`
@@ -2213,7 +2254,7 @@ ALTER TABLE `cabine`
 -- AUTO_INCREMENT for table `cabine2`
 --
 ALTER TABLE `cabine2`
-  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `carboncopy`
@@ -2312,6 +2353,12 @@ ALTER TABLE `permission`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `qabxi`
+--
+ALTER TABLE `qabxi`
+  MODIFY `q_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `region`
 --
 ALTER TABLE `region`
@@ -2339,7 +2386,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `sadarka`
 --
 ALTER TABLE `sadarka`
-  MODIFY `sd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `sd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `sektera`

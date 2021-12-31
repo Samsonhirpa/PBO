@@ -19,7 +19,7 @@ class Structure extends CI_Controller {
             $this->load->model('Structure_model', 'str');
             $this->load->model('bddddomodel', 'b');
             $this->load->model('usermodel', 'm');
-             // $this->load->library('Pdf_report');
+             $this->load->library('Pdf_report');
       }
 
  public function updatecabine($id) {
