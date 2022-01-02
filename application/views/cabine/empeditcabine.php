@@ -23,7 +23,7 @@
                         <!-- general form elements -->
                         <div class="box box-primary">
 
-<form role="form" action="<?php echo base_url('Structure/updatecabine/' .$cabine->cab_id); ?>" method="Post" enctype="multipart/form-data">
+<form role="form" action="<?php echo base_url('Structure/updateempcabine/' .$cabine->cab_id); ?>" method="Post" enctype="multipart/form-data">
  
 <div class="box-header with-border">
        
@@ -46,7 +46,7 @@
                                         <div class="form-group">
                                             <label for="vat" class=" form-control-label"><h4>Saala</h4></label>
                                             <select class="form-control"  name="sala_id"  required="">
-      <option value=""><?php echo $cabine->gender_name;?></option>
+      <option value="<?php echo $cabine->sala_id;?>"><?php echo $cabine->gender_name;?></option>
                                          <?php foreach ($this->str->getGender() as $row){
                                                                     
                                                                         ?>
@@ -117,7 +117,7 @@
                                             <label for="vat" class=" form-control-label"><h4>Haala Maatii</h4></label>
 
                                             <select class="form-control" value="<?php echo $cabine->haalamaati;?>" name="haalamaati" required="">
-            <option value=""><?php echo $cabine->haala;?></option>
+            <option value="<?php echo $cabine->haalamaati;?>"><?php echo $cabine->haala;?></option>
                <?php foreach ($this->str->gethaalamaati() as $row){
                                                                     
                                                                         ?>

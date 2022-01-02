@@ -59,10 +59,16 @@ public function editcabine2($id)
             $this->db->join('gender', 'gender.gender_id = cabine.sala_id', 'left');
             $this->db->join('university', 'university.u_id = cabine2.university_id', 'left');
             $this->db->join('years', 'years.id = cabine2.muxannoo', 'left');
+            $this->db->join('year', 'year.y_id = cabine2.muxano_hog', 'left');
+            $this->db->join('sektera', 'sektera.s_id = cabine2.sector', 'left');
+            $this->db->join('title', 'title.t_id = cabine2.mudama_amma', 'left');
+            $this->db->join('sadarka', 'sadarka.sd_id = cabine2.sadarkaB', 'left');
             
- $this->db->join('sektera', 'sektera.s_id = cabine2.sector', 'left');
-     $this->db->join('title', 'title.t_id = cabine2.mudama_amma', 'left');
-     $this->db->join('sadarka', 'sadarka.sd_id = cabine2.sadarkaB', 'left');
+            $this->db->join('level', 'level.l_id = cabine2.level', 'left');
+            $this->db->join('qabxi', 'qabxi.q_id = cabine2.qabxi', 'left');
+           
+
+
     $query=$this->db->get('cabine2');
     if($query)
     {
@@ -104,11 +110,13 @@ public function deletecabineprofile2($id) {
  public function getcab() {
             $this->db->select('*');
             $this->db->from('cabine2');
+             $this->db->where('requst_status',2);
+            
             $this->db->join('cabine', 'cabine.cab_id = cabine2.maqa_id');
             $this->db->join('woreda', 'woreda.woreda_id = cabine2.woreda', 'left');
             $this->db->join('zone', 'zone.zid = cabine2.zone_id', 'left');
             $this->db->join('gender', 'gender.gender_id = cabine.sala_id', 'left');
-            $this->db->join('years', 'years.id = cabine2.muxannoo', 'left');
+            $this->db->join('year', 'year.y_id = cabine2.muxano_hog', 'left');
             $this->db->join('university', 'university.u_id = cabine2.university_id', 'left');
            $this->db->join('sektera', 'sektera.s_id = cabine2.sector', 'left');
      $this->db->join('title', 'title.t_id = cabine2.mudama_amma', 'left');
@@ -239,6 +247,8 @@ public function gethogganaa_aanaa($ana)
     $this->db->join('woreda', 'woreda.woreda_id = cabine2.woreda', 'left');
     $this->db->join('zone', 'zone.zid = cabine2.zone_id', 'left');
     $this->db->join('university', 'university.u_id = cabine2.university_id', 'left');
+    $this->db->join('year', 'year.y_id = cabine2.muxano_hog', 'left');
+     
      $this->db->join('years', 'years.id = cabine2.muxannoo', 'left');
    $this->db->join('gender', 'gender.gender_id = cabine.sala_id', 'left');
   $this->db->join('sektera', 'sektera.s_id = cabine2.sector', 'left');
@@ -253,7 +263,8 @@ public function gethogganaa_aanaa($ana)
             else{
                   return FALSE;
             }
-            
+           
+
             
       }
     public function gethogganaa_godina($god)
@@ -267,6 +278,8 @@ public function gethogganaa_aanaa($ana)
     $this->db->join('zone', 'zone.zid = cabine2.zone_id', 'left');
     $this->db->join('university', 'university.u_id = cabine2.university_id', 'left');
      $this->db->join('years', 'years.id = cabine2.muxannoo', 'left');
+            $this->db->join('year', 'year.y_id = cabine2.muxano_hog', 'left');
+
    $this->db->join('gender', 'gender.gender_id = cabine.sala_id', 'left');
   $this->db->join('sektera', 'sektera.s_id = cabine2.sector', 'left');
      $this->db->join('title', 'title.t_id = cabine2.mudama_amma', 'left');
@@ -296,6 +309,8 @@ public function gethogganaa_aanaa($ana)
     $this->db->join('zone', 'zone.zid = cabine2.zone_id', 'left');
     $this->db->join('university', 'university.u_id = cabine2.university_id', 'left');
      $this->db->join('years', 'years.id = cabine2.muxannoo', 'left');
+            $this->db->join('year', 'year.y_id = cabine2.muxano_hog', 'left');
+
    $this->db->join('gender', 'gender.gender_id = cabine.sala_id', 'left');
   $this->db->join('sektera', 'sektera.s_id = cabine2.sector', 'left');
      $this->db->join('title', 'title.t_id = cabine2.mudama_amma', 'left');
@@ -324,6 +339,9 @@ public function gethogganaa_aanaa($ana)
     $this->db->join('zone', 'zone.zid = cabine2.zone_id', 'left');
     $this->db->join('university', 'university.u_id = cabine2.university_id', 'left');
      $this->db->join('years', 'years.id = cabine2.muxannoo', 'left');
+            $this->db->join('year', 'year.y_id = cabine2.muxano_hog', 'left');
+
+
    $this->db->join('gender', 'gender.gender_id = cabine.sala_id', 'left');
   $this->db->join('sektera', 'sektera.s_id = cabine2.sector', 'left');
      $this->db->join('title', 'title.t_id = cabine2.mudama_amma', 'left');
@@ -350,6 +368,7 @@ public function gethogganaa_aanaa($ana)
     $this->db->join('woreda', 'woreda.woreda_id = cabine2.woreda', 'left');
     $this->db->join('zone', 'zone.zid = cabine2.zone_id', 'left');
     $this->db->join('university', 'university.u_id = cabine2.university_id', 'left');
+            $this->db->join('year', 'year.y_id = cabine2.muxano_hog', 'left');
      $this->db->join('years', 'years.id = cabine2.muxannoo', 'left');
      $this->db->join('sektera', 'sektera.s_id = cabine2.sector', 'left');
      $this->db->join('title', 'title.t_id = cabine2.mudama_amma', 'left');
@@ -372,10 +391,12 @@ public function gethogganaa_aanaa($ana)
 
     $this->db->select('*');
     $this->db->from('cabine2');
+
     $this->db->join('cabine', 'cabine.cab_id = cabine2.maqa_id');
     $this->db->join('woreda', 'woreda.woreda_id = cabine2.woreda', 'left');
     $this->db->join('zone', 'zone.zid = cabine2.zone_id', 'left');
     $this->db->join('university', 'university.u_id = cabine2.university_id', 'left');
+            $this->db->join('year', 'year.y_id = cabine2.muxano_hog', 'left');
      $this->db->join('years', 'years.id = cabine2.muxannoo', 'left');
  $this->db->join('sektera', 'sektera.s_id = cabine2.sector', 'left');
      $this->db->join('title', 'title.t_id = cabine2.mudama_amma', 'left');
@@ -391,18 +412,21 @@ public function gethogganaa_aanaa($ana)
   public function profileinfo($id){
 
     $this->db->where('c_id',$id);
-     $this->db->join('cabine', 'cabine.cab_id = cabine2.maqa_id');
+    $this->db->join('cabine', 'cabine.cab_id = cabine2.maqa_id');
     $this->db->join('woreda', 'woreda.woreda_id = cabine2.woreda', 'left');
     $this->db->join('zone', 'zone.zid = cabine2.zone_id', 'left');
     $this->db->join('gender', 'gender.gender_id = cabine.sala_id', 'left');
     $this->db->join('haalamaati', 'haalamaati.id = cabine.haalamaati', 'left');
     $this->db->join('years', 'years.id = cabine2.muxannoo', 'left');
+    $this->db->join('year', 'year.y_id = cabine2.muxano_hog', 'left');
     $this->db->join('university', 'university.u_id = cabine2.university_id', 'left');
-     $this->db->join('sektera', 'sektera.s_id = cabine2.sector', 'left');
-     $this->db->join('title', 'title.t_id = cabine2.mudama_amma', 'left');
-     $this->db->join('sadarka', 'sadarka.sd_id = cabine2.sadarkaB', 'left');
-    // $this->db->join('years', 'years.id = cabin2.muxannoo', 'left');
-
+    $this->db->join('sektera', 'sektera.s_id = cabine2.sector', 'left');
+    $this->db->join('title', 'title.t_id = cabine2.mudama_amma', 'left');
+    $this->db->join('sadarka', 'sadarka.sd_id = cabine2.sadarkaB', 'left');
+    $this->db->join('level', 'level.l_id = cabine2.level', 'left');
+    $this->db->join('qabxi', 'qabxi.q_id = cabine2.qabxi', 'left');
+           
+   
       $query=$this->db->get('cabine2');
       if($query)
       {
@@ -430,6 +454,18 @@ public function gethogganaa_aanaa($ana)
     $this->db->select('*');
     // $this->db->order_by('id' , 'DESC');
     $this->db->from('years');
+    $query = $this->db->get();
+    if($query)
+    {
+      return $query->result();
+    }
+  }
+
+  public function getmuxano1(){
+
+    $this->db->select('*');
+    // $this->db->order_by('id' , 'DESC');
+    $this->db->from('year');
     $query = $this->db->get();
     if($query)
     {

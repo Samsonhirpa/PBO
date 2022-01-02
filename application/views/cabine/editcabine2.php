@@ -1,7 +1,7 @@
 <div class="content-wrapper">
       <section class="content" style="min-height: 526px;">
             <div class="col-xs-12">
-                  <div class="col-lg-12 col-sm-12 col-xs-12 no-padding"><h3 class="box-title"><i class="fa fa-hand-pointer-o"></i>Odeeffannoo Hoggaanaa Fooyyessii </h3></div>
+                  <div class="col-lg-12 col-sm-12 col-xs-12 no-padding"><h3 class="box-title"><i class="fa fa-plus"></i>Odeeffannoo Hoggaanaa Fooyyessii </h3></div>
             </div>
 
 
@@ -46,7 +46,7 @@
                          <div class="form-group">
                         <label>Maqaa Hogganaa</label>
                          <select class="form-control" name="maqa_id" required="">
-                         <option style="text-align: center;" value="<?php echo $cabine2->maqa;?>"><?php echo $cabine2->maqa;?></option>
+                         <option style="text-align: center;" value="<?php echo $cabine2->maqa_id;?>"><?php echo $cabine2->maqa;?></option>
                           <?php foreach ($this->str->getmaqa() as $row){
                              ?>
                           <option value="<?php echo $row->cab_id;?>"><?php echo $row->maqa;?></option>
@@ -61,7 +61,7 @@
                       <div class="form-group">
                         <label>Sadarkaa Hoggansaa</label>
                         <select class="form-control" name="level"  required="">
-                         <option style="text-align: center;" value="<?php echo $cabine2->level;?>"><?php echo $cabine2->level;?></option>
+                         <option style="text-align: center;" value="<?php echo $cabine2->level;?>"><?php echo $cabine2->l_name;?></option>
                           <?php foreach ($this->str->getlevel() as $row){
                              ?>
                           <option value="<?php echo $row->l_id;?>"><?php echo $row->l_name;?></option>
@@ -78,7 +78,7 @@
                       <div class="form-group">
                         <label>Sektaraa itti ramadame</label>
                         <select class="form-control" name="sector" id="sector" required="">
-                         <option style="text-align: center;" value="<?php echo $cabine2->sector;?>"><?php echo $cabine2->sector;?></option>
+                         <option style="text-align: center;" value="<?php echo $cabine2->sector;?>"><?php echo $cabine2->s_name;?></option>
                           <?php foreach ($this->str->getsector() as $row){
                              ?>
                           <option value="<?php echo $row->s_id;?>"><?php echo $row->s_name;?></option>
@@ -91,7 +91,7 @@
                       <div class="form-group">
                         <label>Muudama ammaa</label>
                         <select class="form-control" name="mudama_amma" id="mudama" required="">
-                         <option style="text-align: center;" value="<?php echo $cabine2->mudama_amma;?>"><?php echo $cabine2->mudama_amma;?></option>
+                         <option style="text-align: center;" value="<?php echo $cabine2->mudama_amma;?>"><?php echo $cabine2->t_name;?></option>
                         
                           </select>
                          
@@ -108,7 +108,7 @@
                       <div class="form-group">
                         <label>Muuxannoo W/Galaa</label>
                           <select class="form-control" name="muxannoo" required="">
-                         <option style="text-align: center;" value="<?php echo $cabine2->muxannoo;?>"><?php echo $cabine2->muxannoo;?></option>
+                         <option style="text-align: center;" value="<?php echo $cabine2->muxannoo;?>"><?php echo $cabine2->years_name;?></option>
                           <?php foreach ($this->str->getmuxano() as $row){
                              ?>
                           <option value="<?php echo $row->id;?>"><?php echo $row->years_name;?></option>
@@ -121,10 +121,10 @@
                       <div class="form-group">
                         <label>Muuxannoo Hoggansaa</label>
                         <select class="form-control" name="muxano_hog" required="">
-                         <option style="text-align: center;" value="<?php echo $cabine2->muxano_hog;?>"><?php echo $cabine2->muxano_hog;?></option>
-                          <?php foreach ($this->str->getmuxano() as $row){
+                         <option style="text-align: center;" value="<?php echo $cabine2->muxano_hog;?>"><?php echo $cabine2->years_name;?></option>
+                          <?php foreach ($this->str->getmuxano1() as $row){
                              ?>
-                          <option value="<?php echo $row->id;?>"><?php echo $row->years_name;?></option>
+                          <option value="<?php echo $row->y_id;?>"><?php echo $row->y_name;?></option>
                            <?php 
                             } ?>
                           </select>
@@ -139,7 +139,7 @@
                       <div class="form-group">
                         <label>Sadarkaa Barnoota</label>
                          <select class="form-control" name="sadarkaB" required="">
-                         <option style="text-align: center;" value="<?php echo $cabine2->sadarkaB;?>"><?php echo $cabine2->sadarkaB;?></option>
+                         <option style="text-align: center;" value="<?php echo $cabine2->sadarkaB;?>"><?php echo $cabine2->sd_name;?></option>
                           <?php foreach ($this->str->getsadarka() as $row){
                              ?>
                           <option value="<?php echo $row->sd_id;?>"><?php echo $row->sd_name;?></option>
@@ -160,7 +160,7 @@
                       <div class="form-group">
                         <label>Yuuniversiti irraa Ebbifamee</label>
                          <select class="form-control" name="university_id" required="">
-                         <option style="text-align: center;" value="<?php echo $cabine2->university_id;?>"><?php echo $cabine2->university_id;?></option>
+                         <option style="text-align: center;" value="<?php echo $cabine2->university_id;?>"><?php echo $cabine2->u_name;?></option>
                           <?php foreach ($this->str->getuniversity() as $row){
                              ?>
                           <option value="<?php echo $row->u_id;?>"><?php echo $row->u_name;?></option>
@@ -240,7 +240,7 @@
 
 <div class="row">
 
- \
+
 
 
               <div class="col-sm-6">
@@ -278,8 +278,8 @@
                                                       <div class="form-group">
                                          
                                             <label for="company" class=" form-control-label"> <h4>Muuxannoowan gadi fageenyaan</h4></label>
-                                           <textarea rows="5" name="muxannoowan" value="<?php echo $cabine2->muxannoowan;?>" class="form-control"></textarea>
-                                        </div>
+               <textarea rows="5" value="" name="muxannoowan"  class="form-control"><?php echo $cabine2->muxannoowan;?></textarea>
+                                 </div>
                                         
                                         
              
@@ -375,7 +375,7 @@
                       <div class="form-group">
                         <label>Sadarkaa Qabxii</label>
                          <select class="form-control" name="qabxi" required="">
-                         <option style="text-align: center;" value="<?php echo $cabine2->qabxi;?>"><?php echo $cabine2->qabxi;?></option>
+                         <option style="text-align: center;" value="<?php echo $cabine2->qabxi;?>"><?php echo $cabine2->q_name;?></option>
                           <?php foreach ($this->str->getqabxi() as $row){
                              ?>
                           <option value="<?php echo $row->q_id;?>"><?php echo $row->q_name;?></option>
@@ -408,7 +408,7 @@
       $(document).ready(function () {
             $("#sector").change(function () {
                   var sid = $("#sector").val();
-                  alert(sid);
+                  // alert(sid);
                   $.ajax({
                         url: '<?php echo base_url(); ?>BDDDDOcontroller/getmudamaa',
                         'method': 'post',

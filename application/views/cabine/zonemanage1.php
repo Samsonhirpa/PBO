@@ -95,7 +95,7 @@
                                     <td><?php echo $row->woreda_name; ?></td>
                             <td><?php echo $row->operator; ?></td>
                              <td>
-                    <a class="btn btn-sm btn-info"href="<?php echo base_url('Structure/empeditcabine/'.$row->cab_id)?>"><i class="fa fa-wrench">edit</i></a>
+                    <a class="btn btn-sm btn-info"href="<?php echo base_url('Structure/zoneditcabine/'.$row->cab_id)?>"><i class="fa fa-wrench">edit</i></a>
                     <a class="btn btn-sm btn-danger" href="<?php echo base_url('Structure/deletecabineprofile/'.$row->cab_id)?>"onclick="return confirm('Are you sure To Delete This Profile ??')"><i class="fa fa-trash">delete</i></a>
                     
 

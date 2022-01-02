@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 31, 2021 at 12:35 PM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 7.3.27
+-- Generation Time: Jan 02, 2022 at 10:23 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 7.3.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -94,10 +94,9 @@ CREATE TABLE `cabine` (
 --
 
 INSERT INTO `cabine` (`cab_id`, `maqa`, `sala_id`, `umuri`, `bilbila`, `email`, `dhalotaG_id`, `dhalotaA_id`, `haalamaati`, `bayinaM`, `bayinaF`, `file_name`, `zon_id`, `woreda_id`, `operator`, `created_by1`) VALUES
-(27, 'Shuumii Garbiche', '2', '66', '0987654321', 'shuiinhirpa@gmail.com', '21', '330', '2', '1', '0', 'aaa1.jpg', '20', '81', 'shumi garbiche tsegaye', 'shumii'),
-(28, 'tamiru kabada', '1', '26', '0922222524', 'smartallsoftware@gmail.com', '30', '231', '1', '0', '0', 'WIN_20190913_05_02_21_Pro1.jpg', '20', '1', 'caala gezahegn tsegaye', 'cala'),
-(29, 'Tolasa Bacha', '1', '30', '0987654321', 'Samsonhirpa@gmail.com', '35', '165', '1', '1', '1', 'abiy11.jpg', '20', '81', 'shumi garbiche tsegaye', 'shumii'),
-(30, 'Samson Hirpa Tola', '1', '27', '0922222524', 'smartallsoftware@gmail.com', '36', '100', '1', '0', '0', 'a.jpg', '20', '1', 'caala gezahegn tsegaye', 'cala');
+(31, 'Negalign Gezahegn', '1', '26', '0923445426', 'samsonhirpa@gmail.com', '35', '160', '1', '0', '2', '147144.png', '20', '1', 'caala gezahegn tsegaye', 'cala'),
+(32, 'Samson Hirpa Tola', '1', '26', '0911223344', 'Samsonhirpa@gmail.com', '20', '146', '2', '-', '-', 'one.jpg', '20', '1', 'caala gezahegn tsegaye', 'cala'),
+(33, 'Shumii Garbichee', '1', '28', '0911552247', 'kedirilka@gmail.com', '30', '219', '1', '1', '0', 'cartoon1553524267467.jpg', '20', '81', 'shumi garbiche tsegaye', 'shumii');
 
 -- --------------------------------------------------------
 
@@ -147,12 +146,9 @@ CREATE TABLE `cabine2` (
 --
 
 INSERT INTO `cabine2` (`c_id`, `maqa_id`, `mudama_amma`, `muxannoowan`, `muxannoo`, `sadarkaB`, `gosaB`, `university_id`, `gpa`, `carrabarumsa`, `baraqabso`, `barabadhasa`, `hojibadhasa`, `qamabadhase`, `barakafama`, `dhimakahef`, `ciminaijo`, `hanqinaijo`, `cv`, `sector`, `zone_id`, `woreda`, `operator`, `created_by`, `requst_status`, `request_status2`, `muxano_hog`, `level`, `qabxi`, `bakalenji`, `gosalenji`, `baralenji`, `marsa`, `kaffalti`) VALUES
-(6, 27, '88', '', 12, '1', '', 3, '', '', '', '', '', '', '', '', '', '', 'ss4.jpg', '12', '20', '81', 'shumi garbiche tsegaye', 'shumii', 2, 0, '', '', '', '', '', '', '', ''),
-(7, 28, '3', '', 7, '2', 'software', 4, '4.0', 'ostica', '', '', '', '', '', '', '', '', 'WIN_20191016_01_40_04_Pro1.jpg', '1', '20', '1', 'caala gezahegn tsegaye', 'cala', 2, 0, '', '', '', '', '', '', '', ''),
-(8, 29, '4', '2000-2003 =kantibaa magaalaa burayuu\r\n2004-2006= kantibaa magaalaa adaamaa\r\n2007-haamma ammatti= gargaaraa addaa itti gaafatama waajjiraa partii', 10, '2', 'Management', 3, '3.8', '-', '2000', '2010', 'hoggantumaa', 'wajjira partii badhadhinaa', '-', '-', 'yeroo hundaa yaadoota haaraa fiduun', 'fagagasds', 'Oromia_IP_Management_System_(1)5.pdf', '1', '20', '81', 'shumi garbiche tsegaye', 'shumii', 2, 0, '', '', '', '', '', '', '', ''),
-(9, 30, '10', 'degrtfhgyjkl;', 6, '1', 'software', 4, '4', 'ostica', '2010', '2010', 'software', '', '--', '-', 'kaka\'umsaaf muuxannooo cimaa qabaachuu', 'ghjkl', 'Oromia_IP_Management_System_(2)1.pdf', '2', '20', '1', 'caala gezahegn tsegaye', 'cala', 2, 0, '', '', '', '', '', '', '', ''),
-(10, 28, '79', '', 4, '2', '', 2, '', '', '', '', '', '', '', '', '', '', 'earth-g5d276527f_1920.jpg', '3', '20', '380', 'samosn Hirpa Tola', 'samii1234', 0, 0, '4', '1', '2', '', '', '', '', ''),
-(11, 29, '12', '', 4, '2', 'Management', 4, '4.0', '', '1999', '2010', 'hojii bulchinsa gaarii', 'pbo', '-', '-', 'cimtu', 'hin qabdu', 'aaa.jpg', '4', '20', '380', 'samosn Hirpa Tola', 'samii1234', 0, 0, '2', '1', '3', 'ADAMA', '', '2011', '', '185');
+(12, 31, '10', '2000-2005 =KANTIBAA MUGGII\r\n2006-2014=peresidenti nannoo oromiyaa', 8, '2', 'computer science', 2, '3.8', 'ostica', '2000', '2013', 'projecti manage gochuun', 'oistica', '-', '-', 'yeroo hundaa yaadoota haaraa fiduun', 'namoota hojii hin jallannee push gochuun;?>;?>', '0d03e89d-ad32-4aa0-922f-7604276769bf_200x200_(2).png', '2', '20', '1', 'caala gezahegn tsegaye', 'cala', 0, 0, '3', '2', '3', 'Adama', 'Ida\'amuu', '2008', '2FFAA', '180'),
+(13, 32, '5', '2001-2006 = bulchaa magaala nekemte\r\n2007-20014= primenester ethiopia \r\nnan qoose immooo hhhh', 11, '4', 'Software Engineering', 3, '4.0', 'ostica', '2001', '2013', 'projecti manage gochuun', 'oistica', '-', '-', 'yeroo hundaa yaadoota haaraa fiduun', 'namoota hojii hin jallannee push gochuun', 'IMG_1015.JPG', '1', '20', '1', 'caala gezahegn tsegaye', 'cala', 2, 0, '10', '3', '1', 'Adama', 'Ida\'amuu', '2008', '5ffa', '500'),
+(14, 33, '10', '', 7, '2', 'computer science', 5, '3.8', 'ostica', '2011', '2013', 'projecti manage gochuun', 'oistica', '-', '-', 'fcghjk', 'cfbgvnbhjm', 'DSCN8403.JPG', '2', '20', '81', 'shumi garbiche tsegaye', 'shumii', 0, 0, '3', '1', '2', 'Adama', 'Ida\'amuu', '2008', '2FFAA', '180');
 
 -- --------------------------------------------------------
 
@@ -1845,6 +1841,63 @@ INSERT INTO `woreda` (`woreda_id`, `woreda_name`, `woreda_code`, `woreda_descrip
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `year`
+--
+
+CREATE TABLE `year` (
+  `y_id` int(11) NOT NULL,
+  `y_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `year`
+--
+
+INSERT INTO `year` (`y_id`, `y_name`) VALUES
+(1, '1 Year'),
+(2, '2 Years'),
+(3, '3 Years'),
+(4, '4 Years'),
+(5, '5 Years'),
+(6, '6 Years'),
+(7, '7 Years'),
+(8, '8 Years'),
+(9, '9 Years'),
+(10, '10 Years'),
+(11, '11 Years'),
+(12, '12 Years'),
+(13, '13 Years'),
+(14, '14 Years'),
+(15, '15 Years'),
+(16, '16 Years'),
+(17, '17 Years'),
+(18, '18 Years'),
+(19, '19 Years'),
+(20, '20 Years'),
+(21, '21 Years'),
+(22, '22 Years'),
+(23, '23 Years'),
+(24, '24 Years'),
+(25, '25 Years'),
+(26, '26 Years'),
+(27, '27 Years'),
+(28, '28 Years'),
+(29, '29 Years'),
+(30, '30 Years'),
+(31, '31 Years'),
+(32, '32 Years'),
+(33, '33 Years'),
+(34, '34 Years'),
+(35, '35 Years'),
+(36, '36 Years'),
+(37, '37 Years'),
+(38, '38 Years'),
+(39, '39 Years'),
+(40, '40 Years');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `years`
 --
 
@@ -1898,6 +1951,17 @@ INSERT INTO `years` (`id`, `years_name`) VALUES
 (38, '38 Years'),
 (39, '39 Years'),
 (40, '40 Years');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `years1`
+--
+
+CREATE TABLE `years1` (
+  `y_id` int(11) NOT NULL,
+  `y_name` varchar(222) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -2216,10 +2280,22 @@ ALTER TABLE `woreda`
   ADD KEY `region_id` (`region_id`);
 
 --
+-- Indexes for table `year`
+--
+ALTER TABLE `year`
+  ADD PRIMARY KEY (`y_id`);
+
+--
 -- Indexes for table `years`
 --
 ALTER TABLE `years`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `years1`
+--
+ALTER TABLE `years1`
+  ADD PRIMARY KEY (`y_id`);
 
 --
 -- Indexes for table `zone`
@@ -2248,13 +2324,13 @@ ALTER TABLE `all_year`
 -- AUTO_INCREMENT for table `cabine`
 --
 ALTER TABLE `cabine`
-  MODIFY `cab_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `cab_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `cabine2`
 --
 ALTER TABLE `cabine2`
-  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `carboncopy`
@@ -2455,10 +2531,22 @@ ALTER TABLE `woreda`
   MODIFY `woreda_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=381;
 
 --
+-- AUTO_INCREMENT for table `year`
+--
+ALTER TABLE `year`
+  MODIFY `y_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
+--
 -- AUTO_INCREMENT for table `years`
 --
 ALTER TABLE `years`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
+--
+-- AUTO_INCREMENT for table `years1`
+--
+ALTER TABLE `years1`
+  MODIFY `y_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `zone`

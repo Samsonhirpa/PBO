@@ -1,3 +1,4 @@
+
 <div class="content-wrapper">
       <section class="content" style="min-height: 526px;">
             <div class="col-xs-12">
@@ -128,9 +129,9 @@
                         <label>Muuxannoo Hoggansaa</label>
                         <select class="form-control" name="muxano_hog" required="">
                          <option style="text-align: center;" value="">--  Muuxannoo Filadhuu  --</option>
-                          <?php foreach ($this->str->getmuxano() as $row){
+                          <?php foreach ($this->str->getmuxano1() as $row){
                              ?>
-                          <option value="<?php echo $row->id;?>"><?php echo $row->years_name;?></option>
+                    <option value="<?php echo $row->y_id;?>"><?php echo $row->y_name;?></option>
                            <?php 
                             } ?>
                           </select>

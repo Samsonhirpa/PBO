@@ -22,7 +22,181 @@ class Structure extends CI_Controller {
              // $this->load->library('Pdf_report');
       }
 
- public function updatecabine($id) {
+ public function updateempcabine($id) {
+            $config = array(
+                'upload_path' => './upload/',
+                'allowed_types' => 'pdf|jpg|png|docx',
+                'max_size' => 0,
+                'file_name' => url_title($this->input->post('attachment')),
+            );
+            $username= $this->session->userdata('username');
+            $LoggedUser = $this->session->userdata('full_name');
+            $zone = $this->session->userdata('zone');
+            $woreda = $this->session->userdata('woreda');
+            $phone = $this->session->userdata('phone');
+            $email = $this->session->userdata('email');
+            $this->load->library('upload', $config);
+            if($this->upload->do_upload('attachment'))
+        {
+            $this->db->where('cab_id', $id);
+            $query = $this->db->update('cabine', array('file_name'=>$this->upload->file_name,
+           
+                'maqa' => $this->input->post('maqa'),
+                'sala_id' => $this->input->post('sala_id'),
+                'umuri' => $this->input->post('umuri'),
+                'bilbila' => $this->input->post('bilbila'),
+                'email' => $this->input->post('email'),
+                'dhalotaG_id' => $this->input->post('dhalotaG_id'),
+                'dhalotaA_id' => $this->input->post('dhalotaA_id'),
+                'haalamaati' => $this->input->post('haalamaati'),
+                'bayinaM' => $this->input->post('bayinaM'),
+                'bayinaF' => $this->input->post('bayinaF'),
+                                   ));
+            $this->session->set_flashdata('msg',"success");
+        }
+        redirect('Structure/empmanagecabine');
+      }
+
+ public function updateempcabine2($id) {
+            $config = array(
+                'upload_path' => './upload/',
+                'allowed_types' => 'pdf|jpg|png|docx',
+                'max_size' => 0,
+                'file_name' => url_title($this->input->post('cv')),
+            );
+            $username= $this->session->userdata('username');
+            $LoggedUser = $this->session->userdata('full_name');
+            $zone = $this->session->userdata('zone');
+            $woreda = $this->session->userdata('woreda');
+            $phone = $this->session->userdata('phone');
+            $email = $this->session->userdata('email');
+            $this->load->library('upload', $config);
+            if($this->upload->do_upload('cv'))
+        {
+            $this->db->where('c_id', $id);
+            $query = $this->db->update('cabine2', array(
+              'cv'=>$this->upload->file_name,
+                'maqa_id' => $this->input->post('maqa_id'),
+                'sector' => $this->input->post('sector'),
+                'mudama_amma' => $this->input->post('mudama_amma'),
+                'muxannoowan' => $this->input->post('muxannoowan'),
+                'muxannoo' => $this->input->post('muxannoo'),
+                'sadarkaB' => $this->input->post('sadarkaB'),
+                'gosaB' => $this->input->post('gosaB'),
+                'university_id' => $this->input->post('university_id'),
+                'gpa' => $this->input->post('gpa'),
+                'carrabarumsa' => $this->input->post('carrabarumsa'),
+                'baraqabso' => $this->input->post('baraqabso'),
+                'barabadhasa' => $this->input->post('barabadhasa'),
+                'hojibadhasa' => $this->input->post('hojibadhasa'),
+                'qamabadhase' => $this->input->post('qamabadhase'),
+                'barakafama' => $this->input->post('barakafama'),
+                'dhimakahef' => $this->input->post('dhimakahef'),
+                'ciminaijo' => $this->input->post('ciminaijo'),
+                'hanqinaijo' => $this->input->post('hanqinaijo'),
+                'level' => $this->input->post('level'),
+                'muxano_hog' => $this->input->post('muxano_hog'),
+                'qabxi' => $this->input->post('qabxi'),
+                'bakalenji' => $this->input->post('bakalenji'),
+                'baralenji' => $this->input->post('baralenji'),
+                'gosalenji' => $this->input->post('gosalenji'),
+                'marsa' => $this->input->post('marsa'),
+                'kaffalti' => $this->input->post('kaffalti'),
+                
+                                 ));
+            $this->session->set_flashdata('msg',"success");
+        }
+        redirect('Structure/empmanage2');
+      }
+
+public function updatezonecabine($id) {
+            $config = array(
+                'upload_path' => './upload/',
+                'allowed_types' => 'pdf|jpg|png|docx',
+                'max_size' => 0,
+                'file_name' => url_title($this->input->post('attachment')),
+            );
+            $username= $this->session->userdata('username');
+            $LoggedUser = $this->session->userdata('full_name');
+            $zone = $this->session->userdata('zone');
+            $woreda = $this->session->userdata('woreda');
+            $phone = $this->session->userdata('phone');
+            $email = $this->session->userdata('email');
+            $this->load->library('upload', $config);
+            if($this->upload->do_upload('attachment'))
+        {
+            $this->db->where('cab_id', $id);
+            $query = $this->db->update('cabine', array('file_name'=>$this->upload->file_name,
+           
+                'maqa' => $this->input->post('maqa'),
+                'sala_id' => $this->input->post('sala_id'),
+                'umuri' => $this->input->post('umuri'),
+                'bilbila' => $this->input->post('bilbila'),
+                'email' => $this->input->post('email'),
+                'dhalotaG_id' => $this->input->post('dhalotaG_id'),
+                'dhalotaA_id' => $this->input->post('dhalotaA_id'),
+                'haalamaati' => $this->input->post('haalamaati'),
+                'bayinaM' => $this->input->post('bayinaM'),
+                'bayinaF' => $this->input->post('bayinaF'),
+                                   ));
+            $this->session->set_flashdata('msg',"success");
+        }
+        redirect('Structure/zonemanagecabine');
+      }
+
+ public function updatezonecabine2($id) {
+            $config = array(
+                'upload_path' => './upload/',
+                'allowed_types' => 'pdf|jpg|png|docx',
+                'max_size' => 0,
+                'file_name' => url_title($this->input->post('cv')),
+            );
+            $username= $this->session->userdata('username');
+            $LoggedUser = $this->session->userdata('full_name');
+            $zone = $this->session->userdata('zone');
+            $woreda = $this->session->userdata('woreda');
+            $phone = $this->session->userdata('phone');
+            $email = $this->session->userdata('email');
+            $this->load->library('upload', $config);
+            if($this->upload->do_upload('cv'))
+        {
+            $this->db->where('c_id', $id);
+            $query = $this->db->update('cabine2', array(
+              'cv'=>$this->upload->file_name,
+                'maqa_id' => $this->input->post('maqa_id'),
+                'sector' => $this->input->post('sector'),
+                'mudama_amma' => $this->input->post('mudama_amma'),
+                'muxannoowan' => $this->input->post('muxannoowan'),
+                'muxannoo' => $this->input->post('muxannoo'),
+                'sadarkaB' => $this->input->post('sadarkaB'),
+                'gosaB' => $this->input->post('gosaB'),
+                'university_id' => $this->input->post('university_id'),
+                'gpa' => $this->input->post('gpa'),
+                'carrabarumsa' => $this->input->post('carrabarumsa'),
+                'baraqabso' => $this->input->post('baraqabso'),
+                'barabadhasa' => $this->input->post('barabadhasa'),
+                'hojibadhasa' => $this->input->post('hojibadhasa'),
+                'qamabadhase' => $this->input->post('qamabadhase'),
+                'barakafama' => $this->input->post('barakafama'),
+                'dhimakahef' => $this->input->post('dhimakahef'),
+                'ciminaijo' => $this->input->post('ciminaijo'),
+                'hanqinaijo' => $this->input->post('hanqinaijo'),
+                'level' => $this->input->post('level'),
+                'muxano_hog' => $this->input->post('muxano_hog'),
+                'qabxi' => $this->input->post('qabxi'),
+                'bakalenji' => $this->input->post('bakalenji'),
+                'baralenji' => $this->input->post('baralenji'),
+                'gosalenji' => $this->input->post('gosalenji'),
+                'marsa' => $this->input->post('marsa'),
+                'kaffalti' => $this->input->post('kaffalti'),
+                
+                                 ));
+            $this->session->set_flashdata('msg',"success");
+        }
+        redirect('Structure/zonemanage2');
+      }
+
+public function updatecabine($id) {
             $config = array(
                 'upload_path' => './upload/',
                 'allowed_types' => 'pdf|jpg|png|docx',
@@ -94,6 +268,15 @@ class Structure extends CI_Controller {
                 'dhimakahef' => $this->input->post('dhimakahef'),
                 'ciminaijo' => $this->input->post('ciminaijo'),
                 'hanqinaijo' => $this->input->post('hanqinaijo'),
+                'level' => $this->input->post('level'),
+                'muxano_hog' => $this->input->post('muxano_hog'),
+                'qabxi' => $this->input->post('qabxi'),
+                'bakalenji' => $this->input->post('bakalenji'),
+                'baralenji' => $this->input->post('baralenji'),
+                'gosalenji' => $this->input->post('gosalenji'),
+                'marsa' => $this->input->post('marsa'),
+                'kaffalti' => $this->input->post('kaffalti'),
+                
                                  ));
             $this->session->set_flashdata('msg',"success");
         }
@@ -234,7 +417,7 @@ public function managecabine(){
        $this->load->view('layout/header');
             $this->load->view('layout/topmenu');
             $this->load->view('layout/sidemenu');
-            $this->load->view('cabine/zoneeditcabine2' ,$data);
+            $this->load->view('cabine/zoneditcabine2' ,$data);
             $this->load->view('layout/footer.php');
 
             } else {
@@ -1381,7 +1564,7 @@ public function manage_carbonCopy1() {
       $result =   $this->str->requst_status($post);
       if($result)
       {
-            redirect('structure/manage_ramadi');
+            redirect('structure/manage_ramadi1');
       }
 
       }

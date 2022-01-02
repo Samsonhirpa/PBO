@@ -104,7 +104,7 @@ foreach ($this->str->getempcabineprofile2($this->session->userdata('username')) 
 
                               </td>
                              <td>
-                    <a class="btn btn-sm btn-info"href="<?php echo base_url('Structure/empeditcabine2/'.$row->c_id)?>"><i class="fa fa-wrench"></i></a>
+                    <a class="btn btn-sm btn-info"href="<?php echo base_url('Structure/zoneditcabine2/'.$row->c_id)?>"><i class="fa fa-wrench"></i></a>
                  <a class="btn btn-sm btn-success" href="<?php echo base_url('Structure/profileinfo/'.$row->c_id)?>"><i class="fa fa-windows"></i></a>
                     <a class="btn btn-sm btn-danger" href="<?php echo base_url('Structure/deletecabineprofile2/'.$row->c_id)?>"onclick="return confirm('Are you sure To Delete This Information ??')"><i class="fa fa-trash"></i></a>
                     
